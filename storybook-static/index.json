@@ -19,6 +19,177 @@
       "type": "docs",
       "tags": ["dev", "test", "attached-mdx"]
     },
+    "ui-accordion--default": {
+      "type": "story",
+      "id": "ui-accordion--default",
+      "name": "Default",
+      "title": "UI/Accordion",
+      "importPath": "./src/stories/ui/Accordion.stories.tsx",
+      "componentPath": "./components/ui/accordion.tsx",
+      "tags": ["dev", "test"]
+    },
+    "ui-accordion--multiple": {
+      "type": "story",
+      "id": "ui-accordion--multiple",
+      "name": "Multiple",
+      "title": "UI/Accordion",
+      "importPath": "./src/stories/ui/Accordion.stories.tsx",
+      "componentPath": "./components/ui/accordion.tsx",
+      "tags": ["dev", "test"]
+    },
+    "ui-accordion--complete-examples": {
+      "type": "story",
+      "id": "ui-accordion--complete-examples",
+      "name": "Complete Examples",
+      "title": "UI/Accordion",
+      "importPath": "./src/stories/ui/Accordion.stories.tsx",
+      "componentPath": "./components/ui/accordion.tsx",
+      "tags": ["dev", "test"]
+    },
+    "ui-alert--default": {
+      "type": "story",
+      "id": "ui-alert--default",
+      "name": "Default",
+      "title": "UI/Alert",
+      "importPath": "./src/stories/ui/Alert.stories.tsx",
+      "componentPath": "./components/ui/alert.tsx",
+      "tags": ["dev", "test"]
+    },
+    "ui-alert--destructive": {
+      "type": "story",
+      "id": "ui-alert--destructive",
+      "name": "Destructive",
+      "title": "UI/Alert",
+      "importPath": "./src/stories/ui/Alert.stories.tsx",
+      "componentPath": "./components/ui/alert.tsx",
+      "tags": ["dev", "test"]
+    },
+    "ui-alert--without-icon": {
+      "type": "story",
+      "id": "ui-alert--without-icon",
+      "name": "Without Icon",
+      "title": "UI/Alert",
+      "importPath": "./src/stories/ui/Alert.stories.tsx",
+      "componentPath": "./components/ui/alert.tsx",
+      "tags": ["dev", "test"]
+    },
+    "ui-alert--without-title": {
+      "type": "story",
+      "id": "ui-alert--without-title",
+      "name": "Without Title",
+      "title": "UI/Alert",
+      "importPath": "./src/stories/ui/Alert.stories.tsx",
+      "componentPath": "./components/ui/alert.tsx",
+      "tags": ["dev", "test"]
+    },
+    "ui-alert--complete-examples": {
+      "type": "story",
+      "id": "ui-alert--complete-examples",
+      "name": "Complete Examples",
+      "title": "UI/Alert",
+      "importPath": "./src/stories/ui/Alert.stories.tsx",
+      "componentPath": "./components/ui/alert.tsx",
+      "tags": ["dev", "test"]
+    },
+    "ui-avatar--default": {
+      "type": "story",
+      "id": "ui-avatar--default",
+      "name": "Default",
+      "title": "UI/Avatar",
+      "importPath": "./src/stories/ui/Avatar.stories.tsx",
+      "componentPath": "./components/ui/avatar.tsx",
+      "tags": ["dev", "test"]
+    },
+    "ui-avatar--with-fallback": {
+      "type": "story",
+      "id": "ui-avatar--with-fallback",
+      "name": "With Fallback",
+      "title": "UI/Avatar",
+      "importPath": "./src/stories/ui/Avatar.stories.tsx",
+      "componentPath": "./components/ui/avatar.tsx",
+      "tags": ["dev", "test"]
+    },
+    "ui-avatar--custom-size": {
+      "type": "story",
+      "id": "ui-avatar--custom-size",
+      "name": "Custom Size",
+      "title": "UI/Avatar",
+      "importPath": "./src/stories/ui/Avatar.stories.tsx",
+      "componentPath": "./components/ui/avatar.tsx",
+      "tags": ["dev", "test"]
+    },
+    "ui-avatar--custom-fallback-color": {
+      "type": "story",
+      "id": "ui-avatar--custom-fallback-color",
+      "name": "Custom Fallback Color",
+      "title": "UI/Avatar",
+      "importPath": "./src/stories/ui/Avatar.stories.tsx",
+      "componentPath": "./components/ui/avatar.tsx",
+      "tags": ["dev", "test"]
+    },
+    "ui-avatar--complete-examples": {
+      "type": "story",
+      "id": "ui-avatar--complete-examples",
+      "name": "Complete Examples",
+      "title": "UI/Avatar",
+      "importPath": "./src/stories/ui/Avatar.stories.tsx",
+      "componentPath": "./components/ui/avatar.tsx",
+      "tags": ["dev", "test"]
+    },
+    "ui-badge--default": {
+      "type": "story",
+      "id": "ui-badge--default",
+      "name": "Default",
+      "title": "UI/Badge",
+      "importPath": "./src/stories/ui/Badge.stories.tsx",
+      "componentPath": "./components/ui/badge.tsx",
+      "tags": ["dev", "test"]
+    },
+    "ui-badge--secondary": {
+      "type": "story",
+      "id": "ui-badge--secondary",
+      "name": "Secondary",
+      "title": "UI/Badge",
+      "importPath": "./src/stories/ui/Badge.stories.tsx",
+      "componentPath": "./components/ui/badge.tsx",
+      "tags": ["dev", "test"]
+    },
+    "ui-badge--destructive": {
+      "type": "story",
+      "id": "ui-badge--destructive",
+      "name": "Destructive",
+      "title": "UI/Badge",
+      "importPath": "./src/stories/ui/Badge.stories.tsx",
+      "componentPath": "./components/ui/badge.tsx",
+      "tags": ["dev", "test"]
+    },
+    "ui-badge--outline": {
+      "type": "story",
+      "id": "ui-badge--outline",
+      "name": "Outline",
+      "title": "UI/Badge",
+      "importPath": "./src/stories/ui/Badge.stories.tsx",
+      "componentPath": "./components/ui/badge.tsx",
+      "tags": ["dev", "test"]
+    },
+    "ui-badge--with-custom-class": {
+      "type": "story",
+      "id": "ui-badge--with-custom-class",
+      "name": "With Custom Class",
+      "title": "UI/Badge",
+      "importPath": "./src/stories/ui/Badge.stories.tsx",
+      "componentPath": "./components/ui/badge.tsx",
+      "tags": ["dev", "test"]
+    },
+    "ui-badge--complete-examples": {
+      "type": "story",
+      "id": "ui-badge--complete-examples",
+      "name": "Complete Examples",
+      "title": "UI/Badge",
+      "importPath": "./src/stories/ui/Badge.stories.tsx",
+      "componentPath": "./components/ui/badge.tsx",
+      "tags": ["dev", "test"]
+    },
     "ui-button--default": {
       "type": "story",
       "id": "ui-button--default",
@@ -143,6 +314,51 @@
       "title": "UI/Button",
       "importPath": "./src/stories/ui/Button.stories.tsx",
       "componentPath": "./components/ui/button.tsx",
+      "tags": ["dev", "test"]
+    },
+    "ui-card--default": {
+      "type": "story",
+      "id": "ui-card--default",
+      "name": "Default",
+      "title": "UI/Card",
+      "importPath": "./src/stories/ui/Card.stories.tsx",
+      "componentPath": "./components/ui/card.tsx",
+      "tags": ["dev", "test"]
+    },
+    "ui-card--with-actions": {
+      "type": "story",
+      "id": "ui-card--with-actions",
+      "name": "With Actions",
+      "title": "UI/Card",
+      "importPath": "./src/stories/ui/Card.stories.tsx",
+      "componentPath": "./components/ui/card.tsx",
+      "tags": ["dev", "test"]
+    },
+    "ui-card--no-header": {
+      "type": "story",
+      "id": "ui-card--no-header",
+      "name": "No Header",
+      "title": "UI/Card",
+      "importPath": "./src/stories/ui/Card.stories.tsx",
+      "componentPath": "./components/ui/card.tsx",
+      "tags": ["dev", "test"]
+    },
+    "ui-card--no-footer": {
+      "type": "story",
+      "id": "ui-card--no-footer",
+      "name": "No Footer",
+      "title": "UI/Card",
+      "importPath": "./src/stories/ui/Card.stories.tsx",
+      "componentPath": "./components/ui/card.tsx",
+      "tags": ["dev", "test"]
+    },
+    "ui-card--complete-examples": {
+      "type": "story",
+      "id": "ui-card--complete-examples",
+      "name": "Complete Examples",
+      "title": "UI/Card",
+      "importPath": "./src/stories/ui/Card.stories.tsx",
+      "componentPath": "./components/ui/card.tsx",
       "tags": ["dev", "test"]
     },
     "composition-loginform--docs": {

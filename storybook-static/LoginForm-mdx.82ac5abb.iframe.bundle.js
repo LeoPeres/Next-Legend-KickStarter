@@ -400,105 +400,8 @@
         });
       (Label.displayName = dist.f.displayName),
         (Label.__docgenInfo = { description: "", methods: [] });
-      const card_excluded = ["className"],
-        _excluded2 = ["className"],
-        _excluded3 = ["className"],
-        _excluded4 = ["className"],
-        _excluded5 = ["className"],
-        _excluded6 = ["className"];
-      var card_jsx = react.createElement;
-      const Card = react.forwardRef((_ref, ref) => {
-        let { className } = _ref,
-          props = (0, objectWithoutProperties.Z)(_ref, card_excluded);
-        return card_jsx(
-          "div",
-          (0, esm_extends.Z)(
-            {
-              ref,
-              className: (0, utils.cn)(
-                "rounded-lg border bg-card text-card-foreground shadow-sm",
-                className
-              ),
-            },
-            props
-          )
-        );
-      });
-      Card.displayName = "Card";
-      const CardHeader = react.forwardRef((_ref2, ref) => {
-        let { className } = _ref2,
-          props = (0, objectWithoutProperties.Z)(_ref2, _excluded2);
-        return card_jsx(
-          "div",
-          (0, esm_extends.Z)(
-            { ref, className: (0, utils.cn)("flex flex-col space-y-1.5 p-6", className) },
-            props
-          )
-        );
-      });
-      CardHeader.displayName = "CardHeader";
-      const CardTitle = react.forwardRef((_ref3, ref) => {
-        let { className } = _ref3,
-          props = (0, objectWithoutProperties.Z)(_ref3, _excluded3);
-        return card_jsx(
-          "h3",
-          (0, esm_extends.Z)(
-            {
-              ref,
-              className: (0, utils.cn)(
-                "text-lg font-semibold leading-none tracking-tight",
-                className
-              ),
-            },
-            props
-          )
-        );
-      });
-      CardTitle.displayName = "CardTitle";
-      const CardDescription = react.forwardRef((_ref4, ref) => {
-        let { className } = _ref4,
-          props = (0, objectWithoutProperties.Z)(_ref4, _excluded4);
-        return card_jsx(
-          "p",
-          (0, esm_extends.Z)(
-            { ref, className: (0, utils.cn)("text-sm text-muted-foreground", className) },
-            props
-          )
-        );
-      });
-      CardDescription.displayName = "CardDescription";
-      const CardContent = react.forwardRef((_ref5, ref) => {
-        let { className } = _ref5,
-          props = (0, objectWithoutProperties.Z)(_ref5, _excluded5);
-        return card_jsx(
-          "div",
-          (0, esm_extends.Z)({ ref, className: (0, utils.cn)("p-6 pt-0", className) }, props)
-        );
-      });
-      CardContent.displayName = "CardContent";
-      const CardFooter = react.forwardRef((_ref6, ref) => {
-        let { className } = _ref6,
-          props = (0, objectWithoutProperties.Z)(_ref6, _excluded6);
-        return card_jsx(
-          "div",
-          (0, esm_extends.Z)(
-            { ref, className: (0, utils.cn)(" flex items-center p-6 pt-0", className) },
-            props
-          )
-        );
-      });
-      (CardFooter.displayName = "CardFooter"),
-        (Card.__docgenInfo = { description: "", methods: [], displayName: "Card" }),
-        (CardHeader.__docgenInfo = { description: "", methods: [], displayName: "CardHeader" }),
-        (CardFooter.__docgenInfo = { description: "", methods: [], displayName: "CardFooter" }),
-        (CardTitle.__docgenInfo = { description: "", methods: [], displayName: "CardTitle" }),
-        (CardDescription.__docgenInfo = {
-          description: "",
-          methods: [],
-          displayName: "CardDescription",
-        }),
-        (CardContent.__docgenInfo = { description: "", methods: [], displayName: "CardContent" });
-      var react_checkbox_dist = __webpack_require__(
+      var card = __webpack_require__("./components/ui/card.tsx"),
+        react_checkbox_dist = __webpack_require__(
           "./node_modules/@radix-ui/react-checkbox/dist/index.mjs"
         ),
         check = __webpack_require__("./node_modules/lucide-react/dist/esm/icons/check.js");
@@ -534,7 +437,7 @@
           [password, setPassword] = react.useState(""),
           [rememberMe, setRememberMe] = react.useState(!1);
         return LoginForm_jsx(
-          Card,
+          card.Zb,
           { className: "w-full max-w-md mx-auto" },
           LoginForm_jsx(
             "div",
@@ -817,6 +720,185 @@
           },
           composes: ["VariantProps"],
         });
+    },
+    "./components/ui/card.tsx": (
+      __unused_webpack_module,
+      __webpack_exports__,
+      __webpack_require__
+    ) => {
+      "use strict";
+      __webpack_require__.d(__webpack_exports__, {
+        Ol: () => CardHeader,
+        SZ: () => CardDescription,
+        Zb: () => Card,
+        aY: () => CardContent,
+        eW: () => CardFooter,
+        ll: () => CardTitle,
+      });
+      var _Users_leonardoperes_Projects_Next_Legend_KickStarter_node_modules_next_dist_compiled_babel_runtime_helpers_esm_extends_js__WEBPACK_IMPORTED_MODULE_3__ =
+          __webpack_require__(
+            "./node_modules/next/dist/compiled/@babel/runtime/helpers/esm/extends.js"
+          ),
+        _Users_leonardoperes_Projects_Next_Legend_KickStarter_node_modules_next_dist_compiled_babel_runtime_helpers_esm_objectWithoutProperties_js__WEBPACK_IMPORTED_MODULE_2__ =
+          __webpack_require__(
+            "./node_modules/next/dist/compiled/@babel/runtime/helpers/esm/objectWithoutProperties.js"
+          ),
+        react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+          "./node_modules/next/dist/compiled/react/index.js"
+        ),
+        _lib_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./src/lib/utils.ts");
+      const _excluded = ["className"],
+        _excluded2 = ["className"],
+        _excluded3 = ["className"],
+        _excluded4 = ["className"],
+        _excluded5 = ["className"],
+        _excluded6 = ["className"];
+      var __jsx = react__WEBPACK_IMPORTED_MODULE_0__.createElement;
+      const Card = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef((_ref, ref) => {
+        let { className } = _ref,
+          props = (0,
+          _Users_leonardoperes_Projects_Next_Legend_KickStarter_node_modules_next_dist_compiled_babel_runtime_helpers_esm_objectWithoutProperties_js__WEBPACK_IMPORTED_MODULE_2__.Z)(
+            _ref,
+            _excluded
+          );
+        return __jsx(
+          "div",
+          (0,
+          _Users_leonardoperes_Projects_Next_Legend_KickStarter_node_modules_next_dist_compiled_babel_runtime_helpers_esm_extends_js__WEBPACK_IMPORTED_MODULE_3__.Z)(
+            {
+              ref,
+              className: (0, _lib_utils__WEBPACK_IMPORTED_MODULE_1__.cn)(
+                "rounded-lg border bg-card text-card-foreground shadow-sm",
+                className
+              ),
+            },
+            props
+          )
+        );
+      });
+      Card.displayName = "Card";
+      const CardHeader = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef((_ref2, ref) => {
+        let { className } = _ref2,
+          props = (0,
+          _Users_leonardoperes_Projects_Next_Legend_KickStarter_node_modules_next_dist_compiled_babel_runtime_helpers_esm_objectWithoutProperties_js__WEBPACK_IMPORTED_MODULE_2__.Z)(
+            _ref2,
+            _excluded2
+          );
+        return __jsx(
+          "div",
+          (0,
+          _Users_leonardoperes_Projects_Next_Legend_KickStarter_node_modules_next_dist_compiled_babel_runtime_helpers_esm_extends_js__WEBPACK_IMPORTED_MODULE_3__.Z)(
+            {
+              ref,
+              className: (0, _lib_utils__WEBPACK_IMPORTED_MODULE_1__.cn)(
+                "flex flex-col space-y-1.5 p-6",
+                className
+              ),
+            },
+            props
+          )
+        );
+      });
+      CardHeader.displayName = "CardHeader";
+      const CardTitle = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef((_ref3, ref) => {
+        let { className } = _ref3,
+          props = (0,
+          _Users_leonardoperes_Projects_Next_Legend_KickStarter_node_modules_next_dist_compiled_babel_runtime_helpers_esm_objectWithoutProperties_js__WEBPACK_IMPORTED_MODULE_2__.Z)(
+            _ref3,
+            _excluded3
+          );
+        return __jsx(
+          "h3",
+          (0,
+          _Users_leonardoperes_Projects_Next_Legend_KickStarter_node_modules_next_dist_compiled_babel_runtime_helpers_esm_extends_js__WEBPACK_IMPORTED_MODULE_3__.Z)(
+            {
+              ref,
+              className: (0, _lib_utils__WEBPACK_IMPORTED_MODULE_1__.cn)(
+                "text-lg font-semibold leading-none tracking-tight",
+                className
+              ),
+            },
+            props
+          )
+        );
+      });
+      CardTitle.displayName = "CardTitle";
+      const CardDescription = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef((_ref4, ref) => {
+        let { className } = _ref4,
+          props = (0,
+          _Users_leonardoperes_Projects_Next_Legend_KickStarter_node_modules_next_dist_compiled_babel_runtime_helpers_esm_objectWithoutProperties_js__WEBPACK_IMPORTED_MODULE_2__.Z)(
+            _ref4,
+            _excluded4
+          );
+        return __jsx(
+          "p",
+          (0,
+          _Users_leonardoperes_Projects_Next_Legend_KickStarter_node_modules_next_dist_compiled_babel_runtime_helpers_esm_extends_js__WEBPACK_IMPORTED_MODULE_3__.Z)(
+            {
+              ref,
+              className: (0, _lib_utils__WEBPACK_IMPORTED_MODULE_1__.cn)(
+                "text-sm text-muted-foreground",
+                className
+              ),
+            },
+            props
+          )
+        );
+      });
+      CardDescription.displayName = "CardDescription";
+      const CardContent = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef((_ref5, ref) => {
+        let { className } = _ref5,
+          props = (0,
+          _Users_leonardoperes_Projects_Next_Legend_KickStarter_node_modules_next_dist_compiled_babel_runtime_helpers_esm_objectWithoutProperties_js__WEBPACK_IMPORTED_MODULE_2__.Z)(
+            _ref5,
+            _excluded5
+          );
+        return __jsx(
+          "div",
+          (0,
+          _Users_leonardoperes_Projects_Next_Legend_KickStarter_node_modules_next_dist_compiled_babel_runtime_helpers_esm_extends_js__WEBPACK_IMPORTED_MODULE_3__.Z)(
+            {
+              ref,
+              className: (0, _lib_utils__WEBPACK_IMPORTED_MODULE_1__.cn)("p-6 pt-0", className),
+            },
+            props
+          )
+        );
+      });
+      CardContent.displayName = "CardContent";
+      const CardFooter = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef((_ref6, ref) => {
+        let { className } = _ref6,
+          props = (0,
+          _Users_leonardoperes_Projects_Next_Legend_KickStarter_node_modules_next_dist_compiled_babel_runtime_helpers_esm_objectWithoutProperties_js__WEBPACK_IMPORTED_MODULE_2__.Z)(
+            _ref6,
+            _excluded6
+          );
+        return __jsx(
+          "div",
+          (0,
+          _Users_leonardoperes_Projects_Next_Legend_KickStarter_node_modules_next_dist_compiled_babel_runtime_helpers_esm_extends_js__WEBPACK_IMPORTED_MODULE_3__.Z)(
+            {
+              ref,
+              className: (0, _lib_utils__WEBPACK_IMPORTED_MODULE_1__.cn)(
+                " flex items-center p-6 pt-0",
+                className
+              ),
+            },
+            props
+          )
+        );
+      });
+      (CardFooter.displayName = "CardFooter"),
+        (Card.__docgenInfo = { description: "", methods: [], displayName: "Card" }),
+        (CardHeader.__docgenInfo = { description: "", methods: [], displayName: "CardHeader" }),
+        (CardFooter.__docgenInfo = { description: "", methods: [], displayName: "CardFooter" }),
+        (CardTitle.__docgenInfo = { description: "", methods: [], displayName: "CardTitle" }),
+        (CardDescription.__docgenInfo = {
+          description: "",
+          methods: [],
+          displayName: "CardDescription",
+        }),
+        (CardContent.__docgenInfo = { description: "", methods: [], displayName: "CardContent" });
     },
     "./src/lib/utils.ts": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
       "use strict";
