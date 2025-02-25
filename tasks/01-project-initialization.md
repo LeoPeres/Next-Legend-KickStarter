@@ -1,10 +1,10 @@
 # Project Initialization and Setup
 
-- [ ] **1.1. Create Next.js Project** (Responsible: Frontend Lead)
-  - [ ] 1.1.1. Set up a new Next.js project with TypeScript
-  - [ ] 1.1.2. Configure project structure following best practices
-  - [ ] 1.1.3. Initialize Git repository
-  - [ ] 1.1.4. Create initial README.md with project overview and setup instructions
+- [x] **1.1. Create Next.js Project** (Responsible: Frontend Lead)
+  - [x] 1.1.1. Set up a new Next.js project with TypeScript
+  - [x] 1.1.2. Configure project structure following best practices
+  - [x] 1.1.3. Initialize Git repository
+  - [x] 1.1.4. Create initial README.md with project overview and setup instructions
 
 - [ ] **1.2. Configure Development Environment** (Responsible: DevOps Engineer)
   - [ ] 1.2.1. Set up ESLint and Prettier for code quality
