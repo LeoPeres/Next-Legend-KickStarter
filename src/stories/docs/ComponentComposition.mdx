@@ -1,0 +1,189 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Docs/Component Composition" />
+
+# Component Composition Patterns
+
+Component composition is a powerful pattern in React that allows you to build complex UIs by combining simpler components. This guide explains common composition patterns used in this project.
+
+## Basic Composition
+
+The simplest form of composition is nesting components:
+
+```jsx
+<Card>
+  <CardHeader>
+    <CardTitle>Title</CardTitle>
+    <CardDescription>Description</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Content goes here</p>
+  </CardContent>
+  <CardFooter>
+    <Button>Action</Button>
+  </CardFooter>
+</Card>
+```
+
+## Composition with Props
+
+Pass components as props to create flexible compositions:
+
+```jsx
+function Dialog({ title, description, content, actions }) {
+  return (
+    <div className="dialog">
+      <div className="dialog-header">
+        {title}
+        {description && <div className="dialog-description">{description}</div>}
+      </div>
+      <div className="dialog-content">{content}</div>
+      {actions && <div className="dialog-actions">{actions}</div>}
+    </div>
+  );
+}
+
+// Usage
+<Dialog
+  title={<h2>Confirm Action</h2>}
+  description="Are you sure you want to continue?"
+  content={<p>This action cannot be undone.</p>}
+  actions={
+    <>
+      <Button variant="outline">Cancel</Button>
+      <Button>Confirm</Button>
+    </>
+  }
+/>;
+```
+
+## Composition with Children
+
+Use the `children` prop for flexible content:
+
+```jsx
+function Section({ title, children }) {
+  return (
+    <div className="section">
+      <h2 className="section-title">{title}</h2>
+      <div className="section-content">{children}</div>
+    </div>
+  );
+}
+
+// Usage
+<Section title="User Information">
+  <p>Name: John Doe</p>
+  <p>Email: john@example.com</p>
+</Section>;
+```
+
+## Compound Components
+
+Create related components that work together:
+
+```jsx
+const Tabs = ({ children, defaultValue }) => {
+  const [value, setValue] = useState(defaultValue);
+
+  return (
+    <TabsContext.Provider value={{ value, setValue }}>
+      <div className="tabs">{children}</div>
+    </TabsContext.Provider>
+  );
+};
+
+const TabsList = ({ children }) => {
+  return <div className="tabs-list">{children}</div>;
+};
+
+const TabsTrigger = ({ value, children }) => {
+  const { value: selectedValue, setValue } = useContext(TabsContext);
+
+  return (
+    <button
+      className={`tabs-trigger ${selectedValue === value ? "selected" : ""}`}
+      onClick={() => setValue(value)}
+    >
+      {children}
+    </button>
+  );
+};
+
+const TabsContent = ({ value, children }) => {
+  const { value: selectedValue } = useContext(TabsContext);
+
+  if (selectedValue !== value) return null;
+
+  return <div className="tabs-content">{children}</div>;
+};
+
+// Usage
+<Tabs defaultValue="account">
+  <TabsList>
+    <TabsTrigger value="account">Account</TabsTrigger>
+    <TabsTrigger value="password">Password</TabsTrigger>
+  </TabsList>
+  <TabsContent value="account">Account settings...</TabsContent>
+  <TabsContent value="password">Password settings...</TabsContent>
+</Tabs>;
+```
+
+## Higher-Order Components (HOCs)
+
+Create components that enhance other components:
+
+```jsx
+function withAuth(Component) {
+  return function AuthenticatedComponent(props) {
+    const { isAuthenticated, user } = useAuth();
+
+    if (!isAuthenticated) {
+      return <LoginForm />;
+    }
+
+    return <Component user={user} {...props} />;
+  };
+}
+
+// Usage
+const ProfilePage = withAuth(({ user }) => {
+  return <div>Welcome, {user.name}!</div>;
+});
+```
+
+## Render Props
+
+Pass rendering logic as a function prop:
+
+```jsx
+function List({ items, renderItem }) {
+  return (
+    <ul>
+      {items.map((item, index) => (
+        <li key={index}>{renderItem(item)}</li>
+      ))}
+    </ul>
+  );
+}
+
+// Usage
+<List
+  items={["Apple", "Banana", "Cherry"]}
+  renderItem={(item) => <span className="fruit">{item}</span>}
+/>;
+```
+
+## Best Practices
+
+1. **Keep components focused**: Each component should do one thing well.
+2. **Use composition over inheritance**: Prefer composing components rather than extending them.
+3. **Design for reusability**: Components should be reusable in different contexts.
+4. **Consider API consistency**: Related components should have consistent APIs.
+5. **Document composition patterns**: Make it clear how components should be composed.
+
+## Examples in This Project
+
+- **LoginForm**: Combines Button, Input, Label, Card, and Checkbox components
+- **DataTable**: Combines Table, Pagination, and Filter components
+- **Dashboard**: Composes multiple feature components into a complete page

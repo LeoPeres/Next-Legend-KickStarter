@@ -1,0 +1,5 @@
+<svg width="200" height="50" viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="50" height="50" rx="8" fill="#3182CE" />
+  <path d="M15 15L35 35M15 35L35 15" stroke="white" stroke-width="4" stroke-linecap="round" />
+  <text x="60" y="30" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#1A202C">Next Legend</text>
+</svg>

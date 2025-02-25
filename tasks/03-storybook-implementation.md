@@ -12,8 +12,8 @@
   - [x] 3.2.3. Configure automatic prop table generation
   - [x] 3.2.4. Document component variants and usage examples
 
-- [ ] **3.3. Advanced Storybook Configuration** (Responsible: Frontend Lead)
-  - [ ] 3.3.1. Configure Storybook theme to match project branding
-  - [ ] 3.3.2. Set up story hierarchy and organization
-  - [ ] 3.3.3. Implement visual regression testing with Chromatic
-  - [ ] 3.3.4. Configure component composition examples 
+- [x] **3.3. Advanced Storybook Configuration** (Responsible: Frontend Lead)
+  - [x] 3.3.1. Configure Storybook theme to match project branding
+  - [x] 3.3.2. Set up story hierarchy and organization
+  - [x] 3.3.3. Implement visual regression testing with Chromatic
+  - [x] 3.3.4. Configure component composition examples 

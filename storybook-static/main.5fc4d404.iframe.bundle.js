@@ -35,27 +35,70 @@
         external_STORYBOOK_MODULE_GLOBAL_ = __webpack_require__("@storybook/global");
       const importers = [
         async (path) => {
-          if (
-            !/^\.[\\/](?:src(?:\/(?!\.)(?:(?:(?!(?:^|\/)\.).)*?)\/|\/|$)(?!\.)(?=.)[^/]*?\.mdx)$/.exec(
-              path
-            )
-          )
-            return;
-          const pathRemainder = path.substring(6);
+          if (!/^\.[\\/](?:src\/stories\/Introduction\.mdx)$/.exec(path)) return;
+          const pathRemainder = path.substring(14);
           return __webpack_require__(
-            "./src lazy recursive ^\\.\\/.*$ include: (?%21.*node_modules)(?:\\/src(?:\\/(?%21\\.)(?:(?:(?%21(?:^%7C\\/)\\.).)*?)\\/%7C\\/%7C$)(?%21\\.)(?=.)[^/]*?\\.mdx)$"
+            "./src/stories lazy recursive ^\\.\\/.*$ include: (?%21.*node_modules)(?:\\/src\\/stories\\/Introduction\\.mdx)$"
           )("./" + pathRemainder);
         },
         async (path) => {
           if (
-            !/^\.[\\/](?:src(?:\/(?!\.)(?:(?:(?!(?:^|\/)\.).)*?)\/|\/|$)(?!\.)(?=.)[^/]*?\.stories\.(js|jsx|mjs|ts|tsx))$/.exec(
+            !/^\.[\\/](?:src\/stories\/ui(?:\/(?!\.)(?:(?:(?!(?:^|\/)\.).)*?)\/|\/|$)(?!\.)(?=.)[^/]*?\.mdx)$/.exec(
               path
             )
           )
             return;
-          const pathRemainder = path.substring(6);
+          const pathRemainder = path.substring(17);
           return __webpack_require__(
-            "./src lazy recursive ^\\.\\/.*$ include: (?%21.*node_modules)(?:\\/src(?:\\/(?%21\\.)(?:(?:(?%21(?:^%7C\\/)\\.).)*?)\\/%7C\\/%7C$)(?%21\\.)(?=.)[^/]*?\\.stories\\.(js%7Cjsx%7Cmjs%7Cts%7Ctsx))$"
+            "./src/stories/ui lazy recursive ^\\.\\/.*$ include: (?%21.*node_modules)(?:\\/src\\/stories\\/ui(?:\\/(?%21\\.)(?:(?:(?%21(?:^%7C\\/)\\.).)*?)\\/%7C\\/%7C$)(?%21\\.)(?=.)[^/]*?\\.mdx)$"
+          )("./" + pathRemainder);
+        },
+        async (path) => {
+          if (
+            !/^\.[\\/](?:src\/stories\/ui(?:\/(?!\.)(?:(?:(?!(?:^|\/)\.).)*?)\/|\/|$)(?!\.)(?=.)[^/]*?\.stories\.(js|jsx|mjs|ts|tsx))$/.exec(
+              path
+            )
+          )
+            return;
+          const pathRemainder = path.substring(17);
+          return __webpack_require__(
+            "./src/stories/ui lazy recursive ^\\.\\/.*$ include: (?%21.*node_modules)(?:\\/src\\/stories\\/ui(?:\\/(?%21\\.)(?:(?:(?%21(?:^%7C\\/)\\.).)*?)\\/%7C\\/%7C$)(?%21\\.)(?=.)[^/]*?\\.stories\\.(js%7Cjsx%7Cmjs%7Cts%7Ctsx))$"
+          )("./" + pathRemainder);
+        },
+        async (path) => {
+          if (
+            !/^\.[\\/](?:src\/stories\/composition(?:\/(?!\.)(?:(?:(?!(?:^|\/)\.).)*?)\/|\/|$)(?!\.)(?=.)[^/]*?\.mdx)$/.exec(
+              path
+            )
+          )
+            return;
+          const pathRemainder = path.substring(26);
+          return __webpack_require__(
+            "./src/stories/composition lazy recursive ^\\.\\/.*$ include: (?%21.*node_modules)(?:\\/src\\/stories\\/composition(?:\\/(?%21\\.)(?:(?:(?%21(?:^%7C\\/)\\.).)*?)\\/%7C\\/%7C$)(?%21\\.)(?=.)[^/]*?\\.mdx)$"
+          )("./" + pathRemainder);
+        },
+        async (path) => {
+          if (
+            !/^\.[\\/](?:src\/stories\/composition(?:\/(?!\.)(?:(?:(?!(?:^|\/)\.).)*?)\/|\/|$)(?!\.)(?=.)[^/]*?\.stories\.(js|jsx|mjs|ts|tsx))$/.exec(
+              path
+            )
+          )
+            return;
+          const pathRemainder = path.substring(26);
+          return __webpack_require__(
+            "./src/stories/composition lazy recursive ^\\.\\/.*$ include: (?%21.*node_modules)(?:\\/src\\/stories\\/composition(?:\\/(?%21\\.)(?:(?:(?%21(?:^%7C\\/)\\.).)*?)\\/%7C\\/%7C$)(?%21\\.)(?=.)[^/]*?\\.stories\\.(js%7Cjsx%7Cmjs%7Cts%7Ctsx))$"
+          )("./" + pathRemainder);
+        },
+        async (path) => {
+          if (
+            !/^\.[\\/](?:src\/stories\/docs(?:\/(?!\.)(?:(?:(?!(?:^|\/)\.).)*?)\/|\/|$)(?!\.)(?=.)[^/]*?\.mdx)$/.exec(
+              path
+            )
+          )
+            return;
+          const pathRemainder = path.substring(19);
+          return __webpack_require__(
+            "./src/stories/docs lazy recursive ^\\.\\/.*$ include: (?%21.*node_modules)(?:\\/src\\/stories\\/docs(?:\\/(?%21\\.)(?:(?:(?%21(?:^%7C\\/)\\.).)*?)\\/%7C\\/%7C$)(?%21\\.)(?=.)[^/]*?\\.mdx)$"
           )("./" + pathRemainder);
         },
       ];
@@ -259,11 +302,10 @@
         ]);
         const __WEBPACK_DEFAULT_EXPORT__ = ___CSS_LOADER_EXPORT___;
       },
-    "./src lazy recursive ^\\.\\/.*$ include: (?%21.*node_modules)(?:\\/src(?:\\/(?%21\\.)(?:(?:(?%21(?:^%7C\\/)\\.).)*?)\\/%7C\\/%7C$)(?%21\\.)(?=.)[^/]*?\\.mdx)$":
+    "./src/stories/composition lazy recursive ^\\.\\/.*$ include: (?%21.*node_modules)(?:\\/src\\/stories\\/composition(?:\\/(?%21\\.)(?:(?:(?%21(?:^%7C\\/)\\.).)*?)\\/%7C\\/%7C$)(?%21\\.)(?=.)[^/]*?\\.mdx)$":
       (module, __unused_webpack_exports, __webpack_require__) => {
         var map = {
-          "./stories/Configure.mdx": ["./src/stories/Configure.mdx", 47, 847, 769],
-          "./stories/ui/Button.mdx": ["./src/stories/ui/Button.mdx", 47, 924, 410],
+          "./LoginForm.mdx": ["./src/stories/composition/LoginForm.mdx", 47, 53, 715, 797],
         };
         function webpackAsyncContext(req) {
           if (!__webpack_require__.o(map, req))
@@ -279,20 +321,19 @@
         }
         (webpackAsyncContext.keys = () => Object.keys(map)),
           (webpackAsyncContext.id =
-            "./src lazy recursive ^\\.\\/.*$ include: (?%21.*node_modules)(?:\\/src(?:\\/(?%21\\.)(?:(?:(?%21(?:^%7C\\/)\\.).)*?)\\/%7C\\/%7C$)(?%21\\.)(?=.)[^/]*?\\.mdx)$"),
+            "./src/stories/composition lazy recursive ^\\.\\/.*$ include: (?%21.*node_modules)(?:\\/src\\/stories\\/composition(?:\\/(?%21\\.)(?:(?:(?%21(?:^%7C\\/)\\.).)*?)\\/%7C\\/%7C$)(?%21\\.)(?=.)[^/]*?\\.mdx)$"),
           (module.exports = webpackAsyncContext);
       },
-    "./src lazy recursive ^\\.\\/.*$ include: (?%21.*node_modules)(?:\\/src(?:\\/(?%21\\.)(?:(?:(?%21(?:^%7C\\/)\\.).)*?)\\/%7C\\/%7C$)(?%21\\.)(?=.)[^/]*?\\.stories\\.(js%7Cjsx%7Cmjs%7Cts%7Ctsx))$":
+    "./src/stories/composition lazy recursive ^\\.\\/.*$ include: (?%21.*node_modules)(?:\\/src\\/stories\\/composition(?:\\/(?%21\\.)(?:(?:(?%21(?:^%7C\\/)\\.).)*?)\\/%7C\\/%7C$)(?%21\\.)(?=.)[^/]*?\\.stories\\.(js%7Cjsx%7Cmjs%7Cts%7Ctsx))$":
       (module, __unused_webpack_exports, __webpack_require__) => {
         var map = {
-          "./stories/Button.stories": ["./src/stories/Button.stories.ts", 256],
-          "./stories/Button.stories.ts": ["./src/stories/Button.stories.ts", 256],
-          "./stories/Header.stories": ["./src/stories/Header.stories.ts", 758],
-          "./stories/Header.stories.ts": ["./src/stories/Header.stories.ts", 758],
-          "./stories/Page.stories": ["./src/stories/Page.stories.ts", 62],
-          "./stories/Page.stories.ts": ["./src/stories/Page.stories.ts", 62],
-          "./stories/ui/Button.stories": ["./src/stories/ui/Button.stories.tsx", 924, 447],
-          "./stories/ui/Button.stories.tsx": ["./src/stories/ui/Button.stories.tsx", 924, 447],
+          "./LoginForm.stories": ["./src/stories/composition/LoginForm.stories.tsx", 53, 715, 385],
+          "./LoginForm.stories.tsx": [
+            "./src/stories/composition/LoginForm.stories.tsx",
+            53,
+            715,
+            385,
+          ],
         };
         function webpackAsyncContext(req) {
           if (!__webpack_require__.o(map, req))
@@ -308,7 +349,93 @@
         }
         (webpackAsyncContext.keys = () => Object.keys(map)),
           (webpackAsyncContext.id =
-            "./src lazy recursive ^\\.\\/.*$ include: (?%21.*node_modules)(?:\\/src(?:\\/(?%21\\.)(?:(?:(?%21(?:^%7C\\/)\\.).)*?)\\/%7C\\/%7C$)(?%21\\.)(?=.)[^/]*?\\.stories\\.(js%7Cjsx%7Cmjs%7Cts%7Ctsx))$"),
+            "./src/stories/composition lazy recursive ^\\.\\/.*$ include: (?%21.*node_modules)(?:\\/src\\/stories\\/composition(?:\\/(?%21\\.)(?:(?:(?%21(?:^%7C\\/)\\.).)*?)\\/%7C\\/%7C$)(?%21\\.)(?=.)[^/]*?\\.stories\\.(js%7Cjsx%7Cmjs%7Cts%7Ctsx))$"),
+          (module.exports = webpackAsyncContext);
+      },
+    "./src/stories/docs lazy recursive ^\\.\\/.*$ include: (?%21.*node_modules)(?:\\/src\\/stories\\/docs(?:\\/(?%21\\.)(?:(?:(?%21(?:^%7C\\/)\\.).)*?)\\/%7C\\/%7C$)(?%21\\.)(?=.)[^/]*?\\.mdx)$":
+      (module, __unused_webpack_exports, __webpack_require__) => {
+        var map = {
+          "./ComponentComposition.mdx": ["./src/stories/docs/ComponentComposition.mdx", 47, 998],
+          "./VisualTesting.mdx": ["./src/stories/docs/VisualTesting.mdx", 47, 850],
+        };
+        function webpackAsyncContext(req) {
+          if (!__webpack_require__.o(map, req))
+            return Promise.resolve().then(() => {
+              var e = new Error("Cannot find module '" + req + "'");
+              throw ((e.code = "MODULE_NOT_FOUND"), e);
+            });
+          var ids = map[req],
+            id = ids[0];
+          return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(() =>
+            __webpack_require__(id)
+          );
+        }
+        (webpackAsyncContext.keys = () => Object.keys(map)),
+          (webpackAsyncContext.id =
+            "./src/stories/docs lazy recursive ^\\.\\/.*$ include: (?%21.*node_modules)(?:\\/src\\/stories\\/docs(?:\\/(?%21\\.)(?:(?:(?%21(?:^%7C\\/)\\.).)*?)\\/%7C\\/%7C$)(?%21\\.)(?=.)[^/]*?\\.mdx)$"),
+          (module.exports = webpackAsyncContext);
+      },
+    "./src/stories/ui lazy recursive ^\\.\\/.*$ include: (?%21.*node_modules)(?:\\/src\\/stories\\/ui(?:\\/(?%21\\.)(?:(?:(?%21(?:^%7C\\/)\\.).)*?)\\/%7C\\/%7C$)(?%21\\.)(?=.)[^/]*?\\.mdx)$":
+      (module, __unused_webpack_exports, __webpack_require__) => {
+        var map = { "./Button.mdx": ["./src/stories/ui/Button.mdx", 47, 53, 821] };
+        function webpackAsyncContext(req) {
+          if (!__webpack_require__.o(map, req))
+            return Promise.resolve().then(() => {
+              var e = new Error("Cannot find module '" + req + "'");
+              throw ((e.code = "MODULE_NOT_FOUND"), e);
+            });
+          var ids = map[req],
+            id = ids[0];
+          return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(() =>
+            __webpack_require__(id)
+          );
+        }
+        (webpackAsyncContext.keys = () => Object.keys(map)),
+          (webpackAsyncContext.id =
+            "./src/stories/ui lazy recursive ^\\.\\/.*$ include: (?%21.*node_modules)(?:\\/src\\/stories\\/ui(?:\\/(?%21\\.)(?:(?:(?%21(?:^%7C\\/)\\.).)*?)\\/%7C\\/%7C$)(?%21\\.)(?=.)[^/]*?\\.mdx)$"),
+          (module.exports = webpackAsyncContext);
+      },
+    "./src/stories/ui lazy recursive ^\\.\\/.*$ include: (?%21.*node_modules)(?:\\/src\\/stories\\/ui(?:\\/(?%21\\.)(?:(?:(?%21(?:^%7C\\/)\\.).)*?)\\/%7C\\/%7C$)(?%21\\.)(?=.)[^/]*?\\.stories\\.(js%7Cjsx%7Cmjs%7Cts%7Ctsx))$":
+      (module, __unused_webpack_exports, __webpack_require__) => {
+        var map = {
+          "./Button.stories": ["./src/stories/ui/Button.stories.tsx", 53, 463],
+          "./Button.stories.tsx": ["./src/stories/ui/Button.stories.tsx", 53, 463],
+        };
+        function webpackAsyncContext(req) {
+          if (!__webpack_require__.o(map, req))
+            return Promise.resolve().then(() => {
+              var e = new Error("Cannot find module '" + req + "'");
+              throw ((e.code = "MODULE_NOT_FOUND"), e);
+            });
+          var ids = map[req],
+            id = ids[0];
+          return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(() =>
+            __webpack_require__(id)
+          );
+        }
+        (webpackAsyncContext.keys = () => Object.keys(map)),
+          (webpackAsyncContext.id =
+            "./src/stories/ui lazy recursive ^\\.\\/.*$ include: (?%21.*node_modules)(?:\\/src\\/stories\\/ui(?:\\/(?%21\\.)(?:(?:(?%21(?:^%7C\\/)\\.).)*?)\\/%7C\\/%7C$)(?%21\\.)(?=.)[^/]*?\\.stories\\.(js%7Cjsx%7Cmjs%7Cts%7Ctsx))$"),
+          (module.exports = webpackAsyncContext);
+      },
+    "./src/stories lazy recursive ^\\.\\/.*$ include: (?%21.*node_modules)(?:\\/src\\/stories\\/Introduction\\.mdx)$":
+      (module, __unused_webpack_exports, __webpack_require__) => {
+        var map = { "./Introduction.mdx": ["./src/stories/Introduction.mdx", 47, 281] };
+        function webpackAsyncContext(req) {
+          if (!__webpack_require__.o(map, req))
+            return Promise.resolve().then(() => {
+              var e = new Error("Cannot find module '" + req + "'");
+              throw ((e.code = "MODULE_NOT_FOUND"), e);
+            });
+          var ids = map[req],
+            id = ids[0];
+          return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(() =>
+            __webpack_require__(id)
+          );
+        }
+        (webpackAsyncContext.keys = () => Object.keys(map)),
+          (webpackAsyncContext.id =
+            "./src/stories lazy recursive ^\\.\\/.*$ include: (?%21.*node_modules)(?:\\/src\\/stories\\/Introduction\\.mdx)$"),
           (module.exports = webpackAsyncContext);
       },
     "storybook/internal/channels": (module) => {
@@ -340,7 +467,7 @@
     "?d17e": () => {},
   },
   (__webpack_require__) => {
-    __webpack_require__.O(0, [920], () => {
+    __webpack_require__.O(0, [666], () => {
       return (
         (moduleId = "./storybook-config-entry.js"),
         __webpack_require__((__webpack_require__.s = moduleId))

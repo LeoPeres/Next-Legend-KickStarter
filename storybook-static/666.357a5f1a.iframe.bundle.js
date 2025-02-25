@@ -1,6 +1,6 @@
-/*! For license information please see 920.bb2a4906.iframe.bundle.js.LICENSE.txt */
+/*! For license information please see 666.357a5f1a.iframe.bundle.js.LICENSE.txt */
 (self.webpackChunknext_legend_kickstarter = self.webpackChunknext_legend_kickstarter || []).push([
-  [920],
+  [666],
   {
     "./node_modules/@storybook/addon-a11y/dist/preview.mjs": (
       __unused_webpack_module,
@@ -180,65 +180,9 @@
         external_STORYBOOK_MODULE_CORE_EVENTS_PREVIEW_ERRORS_ = __webpack_require__(
           "storybook/internal/preview-errors"
         ),
-        external_STORYBOOK_MODULE_GLOBAL_ = __webpack_require__("@storybook/global");
-      const esm_browser_native = {
-        randomUUID:
-          "undefined" != typeof crypto && crypto.randomUUID && crypto.randomUUID.bind(crypto),
-      };
-      let getRandomValues;
-      const rnds8 = new Uint8Array(16);
-      function rng() {
-        if (
-          !getRandomValues &&
-          ((getRandomValues =
-            "undefined" != typeof crypto &&
-            crypto.getRandomValues &&
-            crypto.getRandomValues.bind(crypto)),
-          !getRandomValues)
-        )
-          throw new Error(
-            "crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported"
-          );
-        return getRandomValues(rnds8);
-      }
-      const byteToHex = [];
-      for (let i = 0; i < 256; ++i) byteToHex.push((i + 256).toString(16).slice(1));
-      function unsafeStringify(arr, offset = 0) {
-        return (
-          byteToHex[arr[offset + 0]] +
-          byteToHex[arr[offset + 1]] +
-          byteToHex[arr[offset + 2]] +
-          byteToHex[arr[offset + 3]] +
-          "-" +
-          byteToHex[arr[offset + 4]] +
-          byteToHex[arr[offset + 5]] +
-          "-" +
-          byteToHex[arr[offset + 6]] +
-          byteToHex[arr[offset + 7]] +
-          "-" +
-          byteToHex[arr[offset + 8]] +
-          byteToHex[arr[offset + 9]] +
-          "-" +
-          byteToHex[arr[offset + 10]] +
-          byteToHex[arr[offset + 11]] +
-          byteToHex[arr[offset + 12]] +
-          byteToHex[arr[offset + 13]] +
-          byteToHex[arr[offset + 14]] +
-          byteToHex[arr[offset + 15]]
-        );
-      }
-      const esm_browser_v4 = function v4(options, buf, offset) {
-        if (esm_browser_native.randomUUID && !buf && !options)
-          return esm_browser_native.randomUUID();
-        const rnds = (options = options || {}).random || (options.rng || rng)();
-        if (((rnds[6] = (15 & rnds[6]) | 64), (rnds[8] = (63 & rnds[8]) | 128), buf)) {
-          offset = offset || 0;
-          for (let i = 0; i < 16; ++i) buf[offset + i] = rnds[i];
-          return buf;
-        }
-        return unsafeStringify(rnds);
-      };
-      var console = __webpack_require__("./node_modules/console-browserify/index.js"),
+        external_STORYBOOK_MODULE_GLOBAL_ = __webpack_require__("@storybook/global"),
+        v4 = __webpack_require__("./node_modules/uuid/dist/esm-browser/v4.js"),
+        console = __webpack_require__("./node_modules/console-browserify/index.js"),
         config = { depth: 10, clearOnStoryChange: !0, limit: 50 },
         findProto = (obj, callback) => {
           let proto = Object.getPrototypeOf(obj);
@@ -292,7 +236,7 @@
             let channel = external_STORYBOOK_MODULE_PREVIEW_API_.addons.getChannel(),
               id =
                 "object" == typeof crypto && "function" == typeof crypto.getRandomValues
-                  ? esm_browser_v4()
+                  ? (0, v4.Z)()
                   : Date.now().toString(36) + Math.random().toString(36).substring(2),
               serializedArgs = args.map(serializeArg),
               normalizedArgs = args.length > 1 ? serializedArgs : serializedArgs[0],
@@ -6742,32 +6686,6 @@
         }
       }
     },
-    "./node_modules/@storybook/nextjs/dist/chunk-42AJV46F.mjs": (
-      __unused_webpack_module,
-      __webpack_exports__,
-      __webpack_require__
-    ) => {
-      "use strict";
-      __webpack_require__.d(__webpack_exports__, { r2: () => __export });
-      var __defProp = Object.defineProperty,
-        __export =
-          (Object.getOwnPropertyNames,
-          __webpack_require__("./node_modules/@storybook/nextjs/dist sync recursive"),
-          (target, all) => {
-            for (var name in all) __defProp(target, name, { get: all[name], enumerable: !0 });
-          });
-    },
-    "./node_modules/@storybook/nextjs/dist/image-context.mjs": (
-      __unused_webpack_module,
-      __webpack_exports__,
-      __webpack_require__
-    ) => {
-      "use strict";
-      __webpack_require__.d(__webpack_exports__, { l: () => ImageContext });
-      __webpack_require__("./node_modules/@storybook/nextjs/dist/chunk-42AJV46F.mjs");
-      var ImageContext = (0,
-      __webpack_require__("./node_modules/next/dist/compiled/react/index.js").createContext)({});
-    },
     "./node_modules/@storybook/nextjs/dist/preview.mjs": (
       __unused_webpack_module,
       __webpack_exports__,
@@ -6784,12 +6702,11 @@
         navigationAPI,
         routerAPI,
         react = __webpack_require__("./node_modules/next/dist/compiled/react/index.js"),
-        ImageContext = __webpack_require__(
-          "./node_modules/@storybook/nextjs/dist/image-context.mjs"
-        ).l,
-        chunk_42AJV46F = __webpack_require__(
-          "./node_modules/@storybook/nextjs/dist/chunk-42AJV46F.mjs"
-        ),
+        __defProp = Object.defineProperty,
+        chunk_NQ32RFK2_ImageContext =
+          (Object.getOwnPropertyNames,
+          __webpack_require__("./node_modules/@storybook/nextjs/dist sync recursive"),
+          (0, react.createContext)({})),
         external_STORYBOOK_MODULE_CORE_EVENTS_PREVIEW_ERRORS_ = __webpack_require__(
           "storybook/internal/preview-errors"
         ),
@@ -6880,7 +6797,9 @@
         ),
         styled_jsx = __webpack_require__("./node_modules/styled-jsx/index.js"),
         console = __webpack_require__("./node_modules/console-browserify/index.js");
-      (0, chunk_42AJV46F.r2)(
+      ((target, all) => {
+        for (var name in all) __defProp(target, name, { get: all[name], enumerable: !0 });
+      })(
         {},
         { decorators: () => decorators, loaders: () => loaders, parameters: () => parameters }
       ),
@@ -7012,7 +6931,7 @@
           (Story, { parameters }) =>
             parameters.nextjs?.image
               ? react.createElement(
-                  ImageContext.Provider,
+                  chunk_NQ32RFK2_ImageContext.Provider,
                   { value: parameters.nextjs.image },
                   react.createElement(Story, null)
                 )
@@ -21839,8 +21758,6 @@
         configure: () => configure2,
         fn: () => fn2,
         l_: () => expect3,
-        mV: () => userEvent2,
-        uh: () => within,
       });
       var _storybook_global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("@storybook/global"),
         _storybook_instrumenter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
@@ -87086,8 +87003,7 @@
             { value: registry },
             children
           );
-        }),
-        (exports.style = JSXStyle);
+        });
     },
     "./node_modules/styled-jsx/index.js": (
       module,
@@ -87895,6 +87811,71 @@
           );
         });
     },
+    "./node_modules/uuid/dist/esm-browser/v4.js": (
+      __unused_webpack_module,
+      __webpack_exports__,
+      __webpack_require__
+    ) => {
+      "use strict";
+      __webpack_require__.d(__webpack_exports__, { Z: () => esm_browser_v4 });
+      const esm_browser_native = {
+        randomUUID:
+          "undefined" != typeof crypto && crypto.randomUUID && crypto.randomUUID.bind(crypto),
+      };
+      let getRandomValues;
+      const rnds8 = new Uint8Array(16);
+      function rng() {
+        if (
+          !getRandomValues &&
+          ((getRandomValues =
+            "undefined" != typeof crypto &&
+            crypto.getRandomValues &&
+            crypto.getRandomValues.bind(crypto)),
+          !getRandomValues)
+        )
+          throw new Error(
+            "crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported"
+          );
+        return getRandomValues(rnds8);
+      }
+      const byteToHex = [];
+      for (let i = 0; i < 256; ++i) byteToHex.push((i + 256).toString(16).slice(1));
+      function unsafeStringify(arr, offset = 0) {
+        return (
+          byteToHex[arr[offset + 0]] +
+          byteToHex[arr[offset + 1]] +
+          byteToHex[arr[offset + 2]] +
+          byteToHex[arr[offset + 3]] +
+          "-" +
+          byteToHex[arr[offset + 4]] +
+          byteToHex[arr[offset + 5]] +
+          "-" +
+          byteToHex[arr[offset + 6]] +
+          byteToHex[arr[offset + 7]] +
+          "-" +
+          byteToHex[arr[offset + 8]] +
+          byteToHex[arr[offset + 9]] +
+          "-" +
+          byteToHex[arr[offset + 10]] +
+          byteToHex[arr[offset + 11]] +
+          byteToHex[arr[offset + 12]] +
+          byteToHex[arr[offset + 13]] +
+          byteToHex[arr[offset + 14]] +
+          byteToHex[arr[offset + 15]]
+        );
+      }
+      const esm_browser_v4 = function v4(options, buf, offset) {
+        if (esm_browser_native.randomUUID && !buf && !options)
+          return esm_browser_native.randomUUID();
+        const rnds = (options = options || {}).random || (options.rng || rng)();
+        if (((rnds[6] = (15 & rnds[6]) | 64), (rnds[8] = (63 & rnds[8]) | 128), buf)) {
+          offset = offset || 0;
+          for (let i = 0; i < 16; ++i) buf[offset + i] = rnds[i];
+          return buf;
+        }
+        return unsafeStringify(rnds);
+      };
+    },
     "./node_modules/which-typed-array/index.js": (
       module,
       __unused_webpack_exports,
@@ -88024,4 +88005,4 @@
     },
   },
 ]);
-//# sourceMappingURL=920.bb2a4906.iframe.bundle.js.map
+//# sourceMappingURL=666.357a5f1a.iframe.bundle.js.map

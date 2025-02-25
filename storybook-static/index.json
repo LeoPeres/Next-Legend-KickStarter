@@ -1,11 +1,11 @@
 {
   "v": 5,
   "entries": {
-    "configure-your-project--docs": {
-      "id": "configure-your-project--docs",
-      "title": "Configure your project",
+    "introduction--docs": {
+      "id": "introduction--docs",
+      "title": "Introduction",
       "name": "Docs",
-      "importPath": "./src/stories/Configure.mdx",
+      "importPath": "./src/stories/Introduction.mdx",
       "storiesImports": [],
       "type": "docs",
       "tags": ["dev", "test", "unattached-mdx"]
@@ -18,96 +18,6 @@
       "storiesImports": ["./src/stories/ui/Button.stories.tsx"],
       "type": "docs",
       "tags": ["dev", "test", "attached-mdx"]
-    },
-    "example-button--docs": {
-      "id": "example-button--docs",
-      "title": "Example/Button",
-      "name": "Docs",
-      "importPath": "./src/stories/Button.stories.ts",
-      "type": "docs",
-      "tags": ["dev", "test", "autodocs"],
-      "storiesImports": []
-    },
-    "example-button--primary": {
-      "type": "story",
-      "id": "example-button--primary",
-      "name": "Primary",
-      "title": "Example/Button",
-      "importPath": "./src/stories/Button.stories.ts",
-      "componentPath": "./src/stories/Button.tsx",
-      "tags": ["dev", "test", "autodocs"]
-    },
-    "example-button--secondary": {
-      "type": "story",
-      "id": "example-button--secondary",
-      "name": "Secondary",
-      "title": "Example/Button",
-      "importPath": "./src/stories/Button.stories.ts",
-      "componentPath": "./src/stories/Button.tsx",
-      "tags": ["dev", "test", "autodocs"]
-    },
-    "example-button--large": {
-      "type": "story",
-      "id": "example-button--large",
-      "name": "Large",
-      "title": "Example/Button",
-      "importPath": "./src/stories/Button.stories.ts",
-      "componentPath": "./src/stories/Button.tsx",
-      "tags": ["dev", "test", "autodocs"]
-    },
-    "example-button--small": {
-      "type": "story",
-      "id": "example-button--small",
-      "name": "Small",
-      "title": "Example/Button",
-      "importPath": "./src/stories/Button.stories.ts",
-      "componentPath": "./src/stories/Button.tsx",
-      "tags": ["dev", "test", "autodocs"]
-    },
-    "example-header--docs": {
-      "id": "example-header--docs",
-      "title": "Example/Header",
-      "name": "Docs",
-      "importPath": "./src/stories/Header.stories.ts",
-      "type": "docs",
-      "tags": ["dev", "test", "autodocs"],
-      "storiesImports": []
-    },
-    "example-header--logged-in": {
-      "type": "story",
-      "id": "example-header--logged-in",
-      "name": "Logged In",
-      "title": "Example/Header",
-      "importPath": "./src/stories/Header.stories.ts",
-      "componentPath": "./src/stories/Header.tsx",
-      "tags": ["dev", "test", "autodocs"]
-    },
-    "example-header--logged-out": {
-      "type": "story",
-      "id": "example-header--logged-out",
-      "name": "Logged Out",
-      "title": "Example/Header",
-      "importPath": "./src/stories/Header.stories.ts",
-      "componentPath": "./src/stories/Header.tsx",
-      "tags": ["dev", "test", "autodocs"]
-    },
-    "example-page--logged-out": {
-      "type": "story",
-      "id": "example-page--logged-out",
-      "name": "Logged Out",
-      "title": "Example/Page",
-      "importPath": "./src/stories/Page.stories.ts",
-      "componentPath": "./src/stories/Page.tsx",
-      "tags": ["dev", "test"]
-    },
-    "example-page--logged-in": {
-      "type": "story",
-      "id": "example-page--logged-in",
-      "name": "Logged In",
-      "title": "Example/Page",
-      "importPath": "./src/stories/Page.stories.ts",
-      "componentPath": "./src/stories/Page.tsx",
-      "tags": ["dev", "test", "play-fn"]
     },
     "ui-button--default": {
       "type": "story",
@@ -234,6 +144,60 @@
       "importPath": "./src/stories/ui/Button.stories.tsx",
       "componentPath": "./components/ui/button.tsx",
       "tags": ["dev", "test"]
+    },
+    "composition-loginform--docs": {
+      "id": "composition-loginform--docs",
+      "title": "Composition/LoginForm",
+      "name": "Docs",
+      "importPath": "./src/stories/composition/LoginForm.mdx",
+      "storiesImports": ["./src/stories/composition/LoginForm.stories.tsx"],
+      "type": "docs",
+      "tags": ["dev", "test", "attached-mdx"]
+    },
+    "composition-loginform--default": {
+      "type": "story",
+      "id": "composition-loginform--default",
+      "name": "Default",
+      "title": "Composition/LoginForm",
+      "importPath": "./src/stories/composition/LoginForm.stories.tsx",
+      "componentPath": "./src/stories/composition/LoginForm.tsx",
+      "tags": ["dev", "test"]
+    },
+    "composition-loginform--loading": {
+      "type": "story",
+      "id": "composition-loginform--loading",
+      "name": "Loading",
+      "title": "Composition/LoginForm",
+      "importPath": "./src/stories/composition/LoginForm.stories.tsx",
+      "componentPath": "./src/stories/composition/LoginForm.tsx",
+      "tags": ["dev", "test"]
+    },
+    "composition-loginform--with-prefilled-email": {
+      "type": "story",
+      "id": "composition-loginform--with-prefilled-email",
+      "name": "With Prefilled Email",
+      "title": "Composition/LoginForm",
+      "importPath": "./src/stories/composition/LoginForm.stories.tsx",
+      "componentPath": "./src/stories/composition/LoginForm.tsx",
+      "tags": ["dev", "test", "play-fn"]
+    },
+    "docs-component-composition--docs": {
+      "id": "docs-component-composition--docs",
+      "title": "Docs/Component Composition",
+      "name": "Docs",
+      "importPath": "./src/stories/docs/ComponentComposition.mdx",
+      "storiesImports": [],
+      "type": "docs",
+      "tags": ["dev", "test", "unattached-mdx"]
+    },
+    "docs-visual-testing--docs": {
+      "id": "docs-visual-testing--docs",
+      "title": "Docs/Visual Testing",
+      "name": "Docs",
+      "importPath": "./src/stories/docs/VisualTesting.mdx",
+      "storiesImports": [],
+      "type": "docs",
+      "tags": ["dev", "test", "unattached-mdx"]
     }
   }
 }

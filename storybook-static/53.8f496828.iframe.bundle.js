@@ -1,15 +1,20 @@
-/*! For license information please see 924.d8a90b79.iframe.bundle.js.LICENSE.txt */
+/*! For license information please see 53.8f496828.iframe.bundle.js.LICENSE.txt */
 "use strict";
 (self.webpackChunknext_legend_kickstarter = self.webpackChunknext_legend_kickstarter || []).push([
-  [924],
+  [53],
   {
-    "./node_modules/@radix-ui/react-slot/dist/index.mjs": (
+    "./node_modules/@radix-ui/react-compose-refs/dist/index.mjs": (
       __unused_webpack_module,
       __webpack_exports__,
       __webpack_require__
     ) => {
-      __webpack_require__.d(__webpack_exports__, { g7: () => Slot });
-      var react = __webpack_require__("./node_modules/next/dist/compiled/react/index.js");
+      __webpack_require__.d(__webpack_exports__, {
+        F: () => composeRefs,
+        e: () => useComposedRefs,
+      });
+      var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+        "./node_modules/next/dist/compiled/react/index.js"
+      );
       function setRef(ref, value) {
         if ("function" == typeof ref) return ref(value);
         null != ref && (ref.current = value);
@@ -30,38 +35,58 @@
             };
         };
       }
-      var jsx_runtime = __webpack_require__(
+      function useComposedRefs(...refs) {
+        return react__WEBPACK_IMPORTED_MODULE_0__.useCallback(composeRefs(...refs), refs);
+      }
+    },
+    "./node_modules/@radix-ui/react-slot/dist/index.mjs": (
+      __unused_webpack_module,
+      __webpack_exports__,
+      __webpack_require__
+    ) => {
+      __webpack_require__.d(__webpack_exports__, { g7: () => Slot });
+      var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+          "./node_modules/next/dist/compiled/react/index.js"
+        ),
+        _radix_ui_react_compose_refs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+          "./node_modules/@radix-ui/react-compose-refs/dist/index.mjs"
+        ),
+        react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
           "./node_modules/next/dist/compiled/react/jsx-runtime.js"
         ),
-        Slot = react.forwardRef((props, forwardedRef) => {
+        Slot = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef((props, forwardedRef) => {
           const { children, ...slotProps } = props,
-            childrenArray = react.Children.toArray(children),
+            childrenArray = react__WEBPACK_IMPORTED_MODULE_0__.Children.toArray(children),
             slottable = childrenArray.find(isSlottable);
           if (slottable) {
             const newElement = slottable.props.children,
               newChildren = childrenArray.map((child) =>
                 child === slottable
-                  ? react.Children.count(newElement) > 1
-                    ? react.Children.only(null)
-                    : react.isValidElement(newElement)
+                  ? react__WEBPACK_IMPORTED_MODULE_0__.Children.count(newElement) > 1
+                    ? react__WEBPACK_IMPORTED_MODULE_0__.Children.only(null)
+                    : react__WEBPACK_IMPORTED_MODULE_0__.isValidElement(newElement)
                       ? newElement.props.children
                       : null
                   : child
               );
-            return (0, jsx_runtime.jsx)(SlotClone, {
+            return (0, react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(SlotClone, {
               ...slotProps,
               ref: forwardedRef,
-              children: react.isValidElement(newElement)
-                ? react.cloneElement(newElement, void 0, newChildren)
+              children: react__WEBPACK_IMPORTED_MODULE_0__.isValidElement(newElement)
+                ? react__WEBPACK_IMPORTED_MODULE_0__.cloneElement(newElement, void 0, newChildren)
                 : null,
             });
           }
-          return (0, jsx_runtime.jsx)(SlotClone, { ...slotProps, ref: forwardedRef, children });
+          return (0, react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(SlotClone, {
+            ...slotProps,
+            ref: forwardedRef,
+            children,
+          });
         });
       Slot.displayName = "Slot";
-      var SlotClone = react.forwardRef((props, forwardedRef) => {
+      var SlotClone = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef((props, forwardedRef) => {
         const { children, ...slotProps } = props;
-        if (react.isValidElement(children)) {
+        if (react__WEBPACK_IMPORTED_MODULE_0__.isValidElement(children)) {
           const childrenRef = (function getElementRef(element) {
               let getter = Object.getOwnPropertyDescriptor(element.props, "ref")?.get,
                 mayWarn = getter && "isReactWarning" in getter && getter.isReactWarning;
@@ -95,17 +120,28 @@
               return { ...slotProps, ...overrideProps };
             })(slotProps, children.props);
           return (
-            children.type !== react.Fragment &&
-              (props2.ref = forwardedRef ? composeRefs(forwardedRef, childrenRef) : childrenRef),
-            react.cloneElement(children, props2)
+            children.type !== react__WEBPACK_IMPORTED_MODULE_0__.Fragment &&
+              (props2.ref = forwardedRef
+                ? (0, _radix_ui_react_compose_refs__WEBPACK_IMPORTED_MODULE_2__.F)(
+                    forwardedRef,
+                    childrenRef
+                  )
+                : childrenRef),
+            react__WEBPACK_IMPORTED_MODULE_0__.cloneElement(children, props2)
           );
         }
-        return react.Children.count(children) > 1 ? react.Children.only(null) : null;
+        return react__WEBPACK_IMPORTED_MODULE_0__.Children.count(children) > 1
+          ? react__WEBPACK_IMPORTED_MODULE_0__.Children.only(null)
+          : null;
       });
       SlotClone.displayName = "SlotClone";
-      var Slottable = ({ children }) => (0, jsx_runtime.jsx)(jsx_runtime.Fragment, { children });
+      var Slottable = ({ children }) =>
+        (0, react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(
+          react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment,
+          { children }
+        );
       function isSlottable(child) {
-        return react.isValidElement(child) && child.type === Slottable;
+        return react__WEBPACK_IMPORTED_MODULE_0__.isValidElement(child) && child.type === Slottable;
       }
     },
     "./node_modules/class-variance-authority/dist/index.mjs": (
@@ -270,81 +306,6 @@
           });
           return (Component.displayName = `${iconName}`), Component;
         };
-    },
-    "./node_modules/lucide-react/dist/esm/icons/arrow-right.js": (
-      __unused_webpack_module,
-      __webpack_exports__,
-      __webpack_require__
-    ) => {
-      __webpack_require__.d(__webpack_exports__, { Z: () => ArrowRight });
-      const ArrowRight = (0,
-      __webpack_require__("./node_modules/lucide-react/dist/esm/createLucideIcon.js").Z)(
-        "ArrowRight",
-        [
-          ["path", { d: "M5 12h14", key: "1ays0h" }],
-          ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }],
-        ]
-      );
-    },
-    "./node_modules/lucide-react/dist/esm/icons/circle-plus.js": (
-      __unused_webpack_module,
-      __webpack_exports__,
-      __webpack_require__
-    ) => {
-      __webpack_require__.d(__webpack_exports__, { Z: () => CirclePlus });
-      const CirclePlus = (0,
-      __webpack_require__("./node_modules/lucide-react/dist/esm/createLucideIcon.js").Z)(
-        "CirclePlus",
-        [
-          ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-          ["path", { d: "M8 12h8", key: "1wcyev" }],
-          ["path", { d: "M12 8v8", key: "napkw2" }],
-        ]
-      );
-    },
-    "./node_modules/lucide-react/dist/esm/icons/mail.js": (
-      __unused_webpack_module,
-      __webpack_exports__,
-      __webpack_require__
-    ) => {
-      __webpack_require__.d(__webpack_exports__, { Z: () => Mail });
-      const Mail = (0,
-      __webpack_require__("./node_modules/lucide-react/dist/esm/createLucideIcon.js").Z)("Mail", [
-        ["rect", { width: "20", height: "16", x: "2", y: "4", rx: "2", key: "18n3k1" }],
-        ["path", { d: "m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7", key: "1ocrg3" }],
-      ]);
-    },
-    "./node_modules/lucide-react/dist/esm/icons/save.js": (
-      __unused_webpack_module,
-      __webpack_exports__,
-      __webpack_require__
-    ) => {
-      __webpack_require__.d(__webpack_exports__, { Z: () => Save });
-      const Save = (0,
-      __webpack_require__("./node_modules/lucide-react/dist/esm/createLucideIcon.js").Z)("Save", [
-        [
-          "path",
-          {
-            d: "M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z",
-            key: "1c8476",
-          },
-        ],
-        ["path", { d: "M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7", key: "1ydtos" }],
-        ["path", { d: "M7 3v4a1 1 0 0 0 1 1h7", key: "t51u73" }],
-      ]);
-    },
-    "./node_modules/lucide-react/dist/esm/icons/trash.js": (
-      __unused_webpack_module,
-      __webpack_exports__,
-      __webpack_require__
-    ) => {
-      __webpack_require__.d(__webpack_exports__, { Z: () => Trash });
-      const Trash = (0,
-      __webpack_require__("./node_modules/lucide-react/dist/esm/createLucideIcon.js").Z)("Trash", [
-        ["path", { d: "M3 6h18", key: "d0wm0j" }],
-        ["path", { d: "M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6", key: "4alrt4" }],
-        ["path", { d: "M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2", key: "v07s0e" }],
-      ]);
     },
     "./node_modules/next/dist/compiled/@babel/runtime/helpers/esm/extends.js": (
       __unused_webpack_module,

@@ -1,5 +1,5 @@
 {
-  "generatedAt": 1740524767755,
+  "generatedAt": 1740525095544,
   "hasCustomBabel": false,
   "hasCustomWebpack": true,
   "hasStaticDirs": true,
@@ -31,6 +31,7 @@
     "@storybook/addon-onboarding": { "version": "8.6.0" },
     "@chromatic-com/storybook": { "version": "3.2.4" },
     "@storybook/experimental-addon-test": { "version": "8.6.0" },
-    "@storybook/addon-a11y": { "version": "8.6.0" }
+    "@storybook/addon-a11y": { "version": "8.6.0" },
+    "chromatic": { "version": "11.26.0", "versionSpecifier": "^11.26.0" }
   }
 }

@@ -3,7 +3,15 @@
  * This is used to enhance the automatic prop table generation in Storybook
  */
 
-import { PropItem } from "@storybook/blocks";
+// Define our own PropItem interface instead of importing from @storybook/blocks
+export interface PropItem {
+  name?: string;
+  type?: {
+    name: string;
+    value?: any;
+    raw?: string;
+  };
+}
 
 export interface ExtendedPropItem extends PropItem {
   defaultValue?: {
@@ -44,7 +52,7 @@ export function createPropDef(props: Record<string, Partial<ExtendedPropItem>>):
       name: key,
       type: { name: value.type?.name || "unknown" },
       ...value,
-    };
+    } as ExtendedPropItem;
     return acc;
   }, {} as PropDef);
 }

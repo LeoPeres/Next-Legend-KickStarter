@@ -12,7 +12,8 @@
     "typecheck": "tsc --noEmit",
     "prepare": "husky",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "chromatic --exit-zero-on-changes"
   },
   "dependencies": {
     "@legendapp/state": "^2.1.15",
@@ -73,6 +74,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "chromatic": "^11.26.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-storybook": "^0.11.3",
     "husky": "^9.1.7",

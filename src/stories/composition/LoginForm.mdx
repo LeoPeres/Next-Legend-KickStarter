@@ -1,0 +1,73 @@
+import {
+  Meta,
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Story,
+} from "@storybook/blocks";
+import * as LoginFormStories from "./LoginForm.stories";
+
+<Meta of={LoginFormStories} />
+
+<Title />
+<Subtitle>A complete login form composed of multiple UI components working together.</Subtitle>
+
+<Description>
+  The LoginForm component demonstrates how to compose multiple UI components to create a complete
+  feature. It combines Button, Input, Label, Card, and Checkbox components to create a cohesive
+  login experience. ## Component Composition This example shows how to: - Combine multiple UI
+  components into a cohesive feature - Manage state across components - Handle form submission -
+  Create a consistent design language ## Usage Guidelines - Use this component for user
+  authentication flows - Customize the form fields and validation as needed - Implement proper error
+  handling for failed login attempts - Consider adding social login options for a complete
+  authentication experience
+</Description>
+
+## Example
+
+<Primary />
+
+## Properties
+
+<Controls />
+
+## Loading State
+
+The login form can display a loading state to indicate that the form is being processed:
+
+<Story of={LoginFormStories.Loading} />
+
+## With Pre-filled Email
+
+This example demonstrates how to pre-fill the email field:
+
+<Story of={LoginFormStories.WithPrefilledEmail} />
+
+## Component Breakdown
+
+The LoginForm component is composed of the following UI components:
+
+- **Card**: Provides the container and styling for the form
+- **Label**: Provides accessible labels for form inputs
+- **Input**: Captures user input for email and password
+- **Checkbox**: Allows users to toggle the "Remember me" option
+- **Button**: Submits the form and shows loading state
+
+## Accessibility Considerations
+
+The LoginForm component is designed with accessibility in mind:
+
+- All form fields have proper labels
+- The form can be navigated using keyboard
+- Loading states are properly communicated
+- Error states (not shown in this example) should be properly announced to screen readers
+
+## Related Components
+
+- [Input](/docs/ui-input--docs)
+- [Button](/docs/ui-button--docs)
+- [Card](/docs/ui-card--docs)
+- [Checkbox](/docs/ui-checkbox--docs)
