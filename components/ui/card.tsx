@@ -1,29 +1,14 @@
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
+
 import { cn } from "@/lib/utils";
-import { cardVariants as themeCardVariants } from "@/lib/theme";
 
-const cardVariants = cva("rounded-lg shadow-sm", {
-  variants: {
-    variant: {
-      default: themeCardVariants.default,
-      bordered: themeCardVariants.bordered,
-      elevated: themeCardVariants.elevated,
-      interactive: themeCardVariants.interactive,
-    },
-  },
-  defaultVariants: {
-    variant: "default",
-  },
-});
-
-interface CardProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof cardVariants> {}
-
-const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, variant, ...props }, ref) => (
-    <div ref={ref} className={cn(cardVariants({ variant, className }))} {...props} />
+const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn("rounded-lg border bg-card text-card-foreground shadow-sm", className)}
+      {...props}
+    />
   )
 );
 Card.displayName = "Card";
@@ -39,7 +24,7 @@ const CardTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HT
   ({ className, ...props }, ref) => (
     <h3
       ref={ref}
-      className={cn("text-2xl font-semibold leading-none tracking-tight", className)}
+      className={cn("text-lg font-semibold leading-none tracking-tight", className)}
       {...props}
     />
   )
@@ -63,9 +48,9 @@ CardContent.displayName = "CardContent";
 
 const CardFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn("flex items-center p-6 pt-0", className)} {...props} />
+    <div ref={ref} className={cn(" flex items-center p-6 pt-0", className)} {...props} />
   )
 );
 CardFooter.displayName = "CardFooter";
 
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent, cardVariants };
+export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent };

@@ -1,0 +1,165 @@
+/**
+ * Global Styles and CSS Variables
+ * 
+ * This file contains additional global styles and CSS variables
+ * that extend the base Tailwind configuration.
+ */
+
+/* Additional CSS variables for the design system */
+:root {
+  /* Transitions */
+  --transition-fast: 150ms;
+  --transition-normal: 200ms;
+  --transition-slow: 300ms;
+  --transition-timing-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-timing-in: cubic-bezier(0.4, 0, 1, 1);
+  --transition-timing-out: cubic-bezier(0, 0, 0.2, 1);
+
+  /* Focus styles */
+  --focus-ring-color: hsl(var(--ring));
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+
+  /* Scrollbar */
+  --scrollbar-size: 10px;
+  --scrollbar-track: hsl(var(--secondary-100));
+  --scrollbar-thumb: hsl(var(--secondary-300));
+
+  /* Layout */
+  --header-height: 64px;
+  --sidebar-width: 256px;
+  --sidebar-collapsed-width: 80px;
+  --content-max-width: 1280px;
+
+  /* Misc */
+  --default-border-radius: 0.5rem;
+  --card-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --hover-overlay: rgba(0, 0, 0, 0.05);
+  --hover-overlay-dark: rgba(255, 255, 255, 0.05);
+}
+
+.dark {
+  /* Dark mode specific variables */
+  --scrollbar-track: hsl(var(--secondary-900));
+  --scrollbar-thumb: hsl(var(--secondary-700));
+  --hover-overlay: rgba(255, 255, 255, 0.05);
+  --hover-overlay-dark: rgba(0, 0, 0, 0.2);
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: var(--scrollbar-size);
+  height: var(--scrollbar-size);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--secondary-400));
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--secondary-600));
+}
+
+/* Focus styles */
+.focus-ring {
+  @apply outline-none ring-offset-background transition-all;
+}
+
+.focus-ring:focus-visible {
+  @apply ring-2 ring-ring ring-offset-2;
+}
+
+/* Common layout patterns */
+.page-container {
+  @apply mx-auto w-full max-w-[var(--content-max-width)] px-4 sm:px-6 lg:px-8;
+}
+
+.page-section {
+  @apply py-8 md:py-12 lg:py-16;
+}
+
+.page-header {
+  @apply mb-6 md:mb-8 lg:mb-12;
+}
+
+/* Hover effects */
+.hover-effect {
+  @apply transition-colors duration-200;
+}
+
+.hover-effect:hover {
+  background-color: var(--hover-overlay);
+}
+
+.dark .hover-effect:hover {
+  background-color: var(--hover-overlay-dark);
+}
+
+/* Responsive media */
+.responsive-media {
+  @apply relative h-0 overflow-hidden;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+}
+
+.responsive-media > * {
+  @apply absolute top-0 left-0 h-full w-full object-cover;
+}
+
+/* Utility classes for common patterns */
+.visually-hidden {
+  @apply sr-only;
+}
+
+.truncate-multiline {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.truncate-multiline-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Animations */
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scale-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+.animate-scale-in {
+  animation: scale-in 0.2s ease-out;
+}
+
+.animate-scale-out {
+  animation: scale-out 0.2s ease-in forwards;
+}
