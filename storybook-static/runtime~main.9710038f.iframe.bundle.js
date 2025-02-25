@@ -95,23 +95,28 @@
       (({
         62: "stories-Page-stories",
         256: "stories-Button-stories",
+        410: "stories-ui-Button-mdx",
+        447: "stories-ui-Button-stories",
         758: "stories-Header-stories",
         769: "stories-Configure-mdx",
       })[chunkId] || chunkId) +
       "." +
       {
         18: "abf0fab8",
-        47: "15f42038",
-        62: "9f903723",
+        47: "44f4bb42",
+        62: "e64c4917",
         115: "fb347415",
         253: "cb83afe0",
-        256: "823a0eb3",
+        256: "d0ce91f4",
+        410: "41d27c52",
         433: "662cb8ba",
+        447: "e058aaca",
         507: "d0616036",
-        758: "c8a535ea",
+        758: "72ccebde",
         769: "509b4484",
         847: "439225aa",
         867: "5733cdab",
+        924: "d8a90b79",
         979: "6002d361",
       }[chunkId] +
       ".iframe.bundle.js"),

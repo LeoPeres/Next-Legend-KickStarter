@@ -1,0 +1,88 @@
+import {
+  Meta,
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Story,
+} from "@storybook/blocks";
+import * as ButtonStories from "./Button.stories";
+
+<Meta of={ButtonStories} />
+
+<Title />
+<Subtitle>A versatile button component with multiple variants and sizes.</Subtitle>
+
+<Description>
+  The Button component is a fundamental UI element used for triggering actions or events. It
+  provides visual feedback to users and can be customized with different variants and sizes to match
+  the design requirements. ## Features - Multiple visual variants (default, destructive, outline,
+  secondary, ghost, link) - Three size options (small, default, large) - Support for disabled state
+  - Can be rendered as a child component using the `asChild` prop - Fully accessible with keyboard
+  navigation and focus states ## Usage Guidelines - Use the default variant for primary actions -
+  Use the destructive variant for potentially dangerous actions - Use the outline or ghost variants
+  for secondary actions - Use the link variant for navigation actions that should appear as links -
+  Choose appropriate sizes based on the context and importance of the action
+</Description>
+
+## Basic Example
+
+<Primary />
+
+## Properties
+
+<Controls />
+
+## Variants
+
+<Story of={ButtonStories.AllVariants} />
+
+## Sizes
+
+<Story of={ButtonStories.DifferentSizes} />
+
+## With Icons
+
+<Story of={ButtonStories.WithIcons} />
+
+## States
+
+<Story of={ButtonStories.ButtonStateExamples} />
+
+## Complete Examples
+
+<Story of={ButtonStories.CompleteExamples} />
+
+## All Stories
+
+<Stories />
+
+## Accessibility Considerations
+
+The Button component is designed with accessibility in mind:
+
+- It maintains a proper contrast ratio for all variants
+- It includes focus states for keyboard navigation
+- It uses appropriate ARIA attributes
+- It supports keyboard interaction
+
+## Design Tokens
+
+The Button component uses the following design tokens:
+
+- `--primary`: Background color for the default variant
+- `--primary-foreground`: Text color for the default variant
+- `--destructive`: Background color for the destructive variant
+- `--destructive-foreground`: Text color for the destructive variant
+- `--secondary`: Background color for the secondary variant
+- `--secondary-foreground`: Text color for the secondary variant
+- `--accent`: Background color for hover states in outline and ghost variants
+- `--accent-foreground`: Text color for hover states in outline and ghost variants
+- `--ring`: Color for the focus ring
+
+## Related Components
+
+- [IconButton](/docs/ui-iconbutton--docs)
+- [ButtonGroup](/docs/ui-buttongroup--docs)
