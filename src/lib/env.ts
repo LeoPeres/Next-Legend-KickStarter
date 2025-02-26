@@ -4,6 +4,12 @@
  * This module provides a centralized way to access environment variables
  * with proper validation and type safety.
  */
+import * as dotenv from "dotenv";
+
+// Load environment variables from .env.local file when not in browser
+if (typeof window === "undefined") {
+  dotenv.config({ path: ".env.local" });
+}
 
 // Define environment variable types
 type EnvironmentVariable = {
@@ -13,25 +19,32 @@ type EnvironmentVariable = {
   description: string;
 };
 
+// Determine if we're in development mode
+const isDevelopment = process.env.NODE_ENV === "development";
+
 // Supabase environment variables
-export const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-export const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+export const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || "";
+export const SUPABASE_ANON_KEY =
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || "";
 
 // Application environment variables
 export const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+
+// Database environment variables
+export const DATABASE_URL = process.env.DATABASE_URL || "";
 
 // Define all environment variables with metadata
 const environmentVariables: EnvironmentVariable[] = [
   {
     name: "SUPABASE_URL",
     value: SUPABASE_URL,
-    required: true,
+    required: !isDevelopment, // Only required in production
     description: "The URL of your Supabase project",
   },
   {
     name: "SUPABASE_ANON_KEY",
     value: SUPABASE_ANON_KEY,
-    required: true,
+    required: !isDevelopment, // Only required in production
     description: "The anonymous key for your Supabase project",
   },
   {
@@ -39,6 +52,12 @@ const environmentVariables: EnvironmentVariable[] = [
     value: APP_URL,
     required: false,
     description: "The URL of your application (defaults to http://localhost:3000)",
+  },
+  {
+    name: "DATABASE_URL",
+    value: DATABASE_URL,
+    required: true,
+    description: "The PostgreSQL connection string for Drizzle ORM",
   },
 ];
 
