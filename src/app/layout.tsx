@@ -7,6 +7,7 @@ import { SupabaseProvider } from "@/components/supabase-provider";
 import { EnvChecker } from "@/components/env-checker";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { AnalyticsProvider } from "@/components/analytics-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -30,10 +31,12 @@ export default function RootLayout({
         <SupabaseProvider>
           <ThemeProvider>
             <AuthProvider>
-              <Header />
-              <main className="flex-1">{children}</main>
-              <Footer />
-              <EnvChecker />
+              <AnalyticsProvider>
+                <Header />
+                <main className="flex-1">{children}</main>
+                <Footer />
+                <EnvChecker />
+              </AnalyticsProvider>
             </AuthProvider>
           </ThemeProvider>
         </SupabaseProvider>
