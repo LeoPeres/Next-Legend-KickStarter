@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { observer } from "@legendapp/state/react";
@@ -14,8 +15,18 @@ export const Header = observer(() => {
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-6">
-          <Link href="/" className="font-bold text-xl">
-            Next-Legend
+          <Link href="/" className="font-bold text-xl flex items-center gap-2">
+            <div className="relative w-8 h-8">
+              <Image
+                src="/logo.svg"
+                alt="Next-Legend Logo"
+                fill
+                sizes="32px"
+                className="object-contain"
+                priority
+              />
+            </div>
+            <span>Next-Legend</span>
           </Link>
           <nav className="hidden md:flex gap-6">
             <Link href="/" className="text-sm font-medium hover:text-primary">

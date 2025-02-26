@@ -15,6 +15,16 @@ export default function Home() {
     <div className="flex flex-col gap-16 py-8 md:py-16">
       {/* Hero Section */}
       <section className="container flex flex-col items-center text-center gap-8">
+        <div className="relative w-32 h-32 mb-4">
+          <Image
+            src="/logo.svg"
+            alt="Next-Legend KickStarter Logo"
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 128px"
+            className="object-contain"
+          />
+        </div>
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
           Next-Legend <span className="text-primary">KickStarter</span>
         </h1>
@@ -45,6 +55,15 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <Card>
             <CardHeader>
+              <div className="relative w-12 h-12 mb-2">
+                <Image
+                  src="/next.svg"
+                  alt="Next.js Logo"
+                  fill
+                  sizes="48px"
+                  className="object-contain"
+                />
+              </div>
               <CardTitle>Next.js App Router</CardTitle>
               <CardDescription>Built on the latest Next.js App Router architecture</CardDescription>
             </CardHeader>
@@ -62,6 +81,15 @@ export default function Home() {
           </Card>
           <Card>
             <CardHeader>
+              <div className="relative w-12 h-12 mb-2">
+                <Image
+                  src="/globe.svg"
+                  alt="Legend State Logo"
+                  fill
+                  sizes="48px"
+                  className="object-contain"
+                />
+              </div>
               <CardTitle>Legend State</CardTitle>
               <CardDescription>Reactive state management for React</CardDescription>
             </CardHeader>
@@ -79,6 +107,15 @@ export default function Home() {
           </Card>
           <Card>
             <CardHeader>
+              <div className="relative w-12 h-12 mb-2">
+                <Image
+                  src="/file.svg"
+                  alt="Supabase Logo"
+                  fill
+                  sizes="48px"
+                  className="object-contain"
+                />
+              </div>
               <CardTitle>Supabase Integration</CardTitle>
               <CardDescription>Built-in authentication and database</CardDescription>
             </CardHeader>
