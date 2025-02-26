@@ -1,23 +1,33 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
+import { createRequire } from "module";
 import { FlatCompat } from "@eslint/eslintrc";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
+const require = createRequire(import.meta.url);
 const compat = new FlatCompat({
-  baseDirectory: __dirname,
+  baseDirectory: import.meta.dirname,
+  recommendedConfig: require("@eslint/js").configs.recommended,
 });
 
-const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "prettier"),
+export default [
+  ...compat.extends(
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "next/core-web-vitals",
+    "prettier"
+  ),
   {
-    rules: {
-      "react/react-in-jsx-scope": "off",
-      "react/prop-types": "off",
-      "no-unused-vars": "warn",
+    ignores: ["node_modules/", ".next/", "out/", "storybook-static/"],
+  },
+  {
+    files: ["**/*.ts", "**/*.tsx"],
+    languageOptions: {
+      parser: require("@typescript-eslint/parser"),
+      parserOptions: {
+        ecmaVersion: "latest",
+        sourceType: "module",
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
     },
   },
 ];
-
-export default eslintConfig;

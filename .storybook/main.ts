@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/nextjs";
+import path from "path";
 
 const config: StorybookConfig = {
   stories: [
@@ -42,13 +43,27 @@ const config: StorybookConfig = {
           if (postcssLoader && typeof postcssLoader === "object") {
             postcssLoader.options = {
               postcssOptions: {
-                plugins: [require("tailwindcss"), require("autoprefixer")],
+                plugins: [
+                  require("tailwindcss")({
+                    config: path.resolve(__dirname, "../tailwind.config.ts"),
+                  }),
+                  require("autoprefixer"),
+                ],
               },
             };
           }
         }
       }
     }
+
+    // Add path aliases to match Next.js configuration
+    if (config.resolve) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        "@": path.resolve(__dirname, "../src"),
+      };
+    }
+
     return config;
   },
 };

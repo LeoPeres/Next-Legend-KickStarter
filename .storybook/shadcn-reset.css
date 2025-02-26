@@ -1,0 +1,178 @@
+/* Shadcn UI specific resets for Storybook */
+
+/* Button component */
+.btn,
+button[class*="btn"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  height: 2.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  transition-property:
+    color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow,
+    transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Card component */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius);
+  background-color: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem 1.5rem 0 1.5rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+}
+
+.card-description {
+  color: hsl(var(--muted-foreground));
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.card-content {
+  padding: 1.5rem;
+}
+
+.card-footer {
+  display: flex;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+/* Input component */
+.input {
+  display: flex;
+  height: 2.5rem;
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid hsl(var(--input));
+  background-color: transparent;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px hsl(var(--ring));
+}
+
+/* Dialog component */
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fade-in 0.3s ease-in-out;
+}
+
+.dialog-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 50;
+  display: grid;
+  width: 100%;
+  max-width: 28rem;
+  gap: 1rem;
+  border-radius: var(--radius);
+  background-color: hsl(var(--background));
+  padding: 1.5rem;
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  animation: fade-in 0.3s ease-in-out;
+}
+
+/* Popover component */
+.popover-content {
+  position: absolute;
+  z-index: 50;
+  border-radius: var(--radius);
+  background-color: hsl(var(--popover));
+  color: hsl(var(--popover-foreground));
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  animation: fade-in 0.3s ease-in-out;
+  padding: 0.5rem;
+}
+
+/* Dropdown menu component */
+.dropdown-menu-content {
+  position: absolute;
+  z-index: 50;
+  min-width: 8rem;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background-color: hsl(var(--popover));
+  color: hsl(var(--popover-foreground));
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  animation: fade-in 0.3s ease-in-out;
+}
+
+.dropdown-menu-item {
+  position: relative;
+  display: flex;
+  cursor: pointer;
+  user-select: none;
+  align-items: center;
+  border-radius: calc(var(--radius) - 2px);
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  outline: none;
+}
+
+.dropdown-menu-item:hover {
+  background-color: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+
+/* Tooltip component */
+.tooltip {
+  position: absolute;
+  z-index: 50;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background-color: hsl(var(--popover));
+  color: hsl(var(--popover-foreground));
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  animation: fade-in 0.3s ease-in-out;
+}
+
+/* Fix for Radix UI specific components */
+[data-radix-popper-content-wrapper] {
+  z-index: 50 !important;
+}
