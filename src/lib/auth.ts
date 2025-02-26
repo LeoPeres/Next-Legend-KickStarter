@@ -155,16 +155,41 @@ export const updatePassword = async (password: string) => {
  */
 export const getSession = async () => {
   try {
-    const { data, error } = await supabase.auth.getSession();
+    // Check if we're on the server
+    const isServer = typeof window === "undefined";
 
-    if (error) {
-      throw error;
+    if (isServer) {
+      // For server-side, we need to use createServerSupabaseClient
+      const { createServerComponentClient } = await import("@supabase/auth-helpers-nextjs");
+      const { cookies } = await import("next/headers");
+
+      const supabase = createServerComponentClient({
+        cookies,
+      });
+
+      const { data, error } = await supabase.auth.getSession();
+
+      if (error) {
+        throw error;
+      }
+
+      return {
+        success: true,
+        session: data.session,
+      };
+    } else {
+      // For client-side, use the regular supabase client
+      const { data, error } = await supabase.auth.getSession();
+
+      if (error) {
+        throw error;
+      }
+
+      return {
+        success: true,
+        session: data.session,
+      };
     }
-
-    return {
-      success: true,
-      session: data.session,
-    };
   } catch (error: any) {
     console.error("Get session error:", error);
     return { success: false, error: error.message };

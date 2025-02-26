@@ -1,17 +1,9 @@
-"use client";
-
-import { observer } from "@legendapp/state/react";
-import { store } from "@/lib/store";
-import { ProtectedRoute } from "@/components/protected-route";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { signOut } from "@/lib/auth";
-import { useRouter } from "next/navigation";
-import { Suspense, lazy } from "react";
+import { Suspense } from "react";
+import { redirect } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
-
-// Lazy load the dashboard content
-const DashboardContent = lazy(() => import("@/components/dashboard/dashboard-content"));
+import { getSession } from "@/lib/auth";
+import DashboardClient from "@/components/dashboard/dashboard-client";
+import { fetchCurrentUser } from "@/app/api/server-components";
 
 // Loading fallback component
 const DashboardSkeleton = () => (
@@ -25,12 +17,27 @@ const DashboardSkeleton = () => (
   </div>
 );
 
-export default function DashboardPage() {
+// Server component for the dashboard page
+export default async function DashboardPage() {
+  // Check authentication on the server
+  const { success, session } = await getSession();
+
+  // If not authenticated, redirect to login
+  if (!success || !session) {
+    redirect("/login");
+  }
+
+  // Fetch user data on the server
+  const user = await fetchCurrentUser();
+
+  // If no user data, redirect to login
+  if (!user) {
+    redirect("/login");
+  }
+
   return (
-    <ProtectedRoute>
-      <Suspense fallback={<DashboardSkeleton />}>
-        <DashboardContent />
-      </Suspense>
-    </ProtectedRoute>
+    <Suspense fallback={<DashboardSkeleton />}>
+      <DashboardClient initialUser={user} />
+    </Suspense>
   );
 }
