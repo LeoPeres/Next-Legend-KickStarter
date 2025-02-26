@@ -26,4 +26,12 @@ const sentryWebpackPluginOptions = {
   silent: true, // Suppresses all logs
 };
 
-module.exports = withSentryConfig(nextConfig, sentryWebpackPluginOptions);
+// For development, we'll skip the Sentry configuration
+// In production, we would use the Sentry configuration
+module.exports =
+  process.env.NODE_ENV === "development" || process.env.SKIP_SENTRY === "true"
+    ? nextConfig
+    : withSentryConfig(nextConfig, sentryWebpackPluginOptions, {
+        // Sentry SDK options
+        // Add options here
+      });
