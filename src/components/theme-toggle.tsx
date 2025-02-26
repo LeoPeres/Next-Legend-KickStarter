@@ -1,7 +1,7 @@
 import { observer } from "@legendapp/state/react";
-import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { store, themeActions } from "@/lib/store";
+import { Icon } from "@/lib/icons";
 
 export const ThemeToggle = observer(() => {
   const theme = store.theme.get();
@@ -13,7 +13,11 @@ export const ThemeToggle = observer(() => {
       onClick={() => themeActions.toggleTheme()}
       aria-label="Toggle theme"
     >
-      {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+      {theme === "dark" ? (
+        <Icon name="sun" className="h-5 w-5" />
+      ) : (
+        <Icon name="moon" className="h-5 w-5" />
+      )}
     </Button>
   );
 });
