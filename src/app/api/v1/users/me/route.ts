@@ -1,16 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
+import { withCache, invalidateCache } from "@/lib/cache";
 
 /**
  * GET handler for current user
  * Returns the currently authenticated user
  */
-export async function GET(request: NextRequest) {
-  // In a real application, this would get the user from the session/token
-  // For now, we'll return a mock user
+async function getCurrentUser(request: NextRequest) {
+  // In a real application, this would fetch the current user from the session
   return NextResponse.json({
     id: 1,
     name: "Current User",
-    email: "current.user@example.com",
+    email: "current@example.com",
     role: "admin",
     createdAt: new Date().toISOString(),
     lastLogin: new Date().toISOString(),
@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
  * PUT handler for current user
  * Updates the currently authenticated user
  */
-export async function PUT(request: NextRequest) {
+async function updateCurrentUser(request: NextRequest) {
   try {
     const body = await request.json();
 
@@ -34,14 +34,27 @@ export async function PUT(request: NextRequest) {
     }
 
     // In a real application, this would update the user in the database
+
+    // Invalidate cache for the current user
+    await invalidateCache(["current-user"]);
+
     return NextResponse.json({
       id: 1,
       name: body.name || "Current User",
-      email: body.email || "current.user@example.com",
-      role: "admin",
+      email: body.email || "current@example.com",
       message: "Profile updated successfully",
     });
   } catch (error) {
     return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
   }
 }
+
+// Apply caching to the GET handler (short duration for personal data)
+export const GET = withCache(getCurrentUser, {
+  duration: 60, // 1 minute
+  staleWhileRevalidate: true,
+  tags: ["current-user"],
+});
+
+// PUT requests should not be cached
+export const PUT = updateCurrentUser;

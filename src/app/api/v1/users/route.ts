@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
+import { withCache } from "@/lib/cache";
 
 /**
  * GET handler for users endpoint
  * Returns a list of users
  */
-export async function GET(request: NextRequest) {
+async function getUsers(request: NextRequest) {
   // In a real application, this would fetch from the database
   // and include pagination, filtering, etc.
   return NextResponse.json({
@@ -24,7 +25,7 @@ export async function GET(request: NextRequest) {
  * POST handler for users endpoint
  * Creates a new user
  */
-export async function POST(request: NextRequest) {
+async function createUser(request: NextRequest) {
   try {
     const body = await request.json();
 
@@ -47,3 +48,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
   }
 }
+
+// Apply caching to the GET handler (5 minutes cache)
+export const GET = withCache(getUsers, {
+  duration: 300, // 5 minutes
+  staleWhileRevalidate: true,
+  tags: ["users"],
+});
+
+// POST requests should not be cached
+export const POST = createUser;

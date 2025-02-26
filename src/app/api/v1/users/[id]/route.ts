@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
+import { withCache, invalidateCache } from "@/lib/cache";
 
 /**
  * GET handler for individual user
  * Returns a user by ID
  */
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+async function getUserById(request: NextRequest, { params }: { params: { id: string } }) {
   const id = params.id;
 
   // In a real application, this would fetch from the database
@@ -25,7 +26,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
  * PUT handler for individual user
  * Updates a user by ID
  */
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+async function updateUser(request: NextRequest, { params }: { params: { id: string } }) {
   const id = params.id;
 
   try {
@@ -40,6 +41,10 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     }
 
     // In a real application, this would update the user in the database
+
+    // Invalidate cache for this user and the users list
+    await invalidateCache([`user-${id}`, "users"]);
+
     return NextResponse.json({
       id: parseInt(id),
       name: body.name || `User ${id}`,
@@ -55,11 +60,26 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
  * DELETE handler for individual user
  * Deletes a user by ID
  */
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+async function deleteUser(request: NextRequest, { params }: { params: { id: string } }) {
   const id = params.id;
 
   // In a real application, this would delete the user from the database
+
+  // Invalidate cache for this user and the users list
+  await invalidateCache([`user-${id}`, "users"]);
+
   return NextResponse.json({
     message: `User ${id} deleted successfully`,
   });
 }
+
+// Apply caching to the GET handler (10 minutes cache)
+export const GET = withCache(getUserById, {
+  duration: 600, // 10 minutes
+  staleWhileRevalidate: true,
+  tags: ["users", `user-dynamic`],
+});
+
+// PUT and DELETE requests should not be cached
+export const PUT = updateUser;
+export const DELETE = deleteUser;

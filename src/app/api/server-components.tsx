@@ -1,21 +1,26 @@
 import { User } from "@/types/api/models";
+import { notFound } from "next/navigation";
 
 /**
- * Fetches a list of users from the API
- * @returns A list of users
+ * Fetch all users with caching
+ * This function is used by server components
  */
 export async function fetchUsers(): Promise<User[]> {
   try {
-    const response = await fetch("/api/v1/users", {
-      next: { revalidate: 60 }, // Revalidate every 60 seconds
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users`, {
+      next: {
+        revalidate: 60, // Cache for 60 seconds
+        tags: ["users"],
+      },
     });
 
-    if (!response.ok) {
-      throw new Error("Failed to fetch users");
+    if (!res.ok) {
+      console.error("Failed to fetch users:", await res.text());
+      return [];
     }
 
-    const data = await response.json();
-    return data.users;
+    const data = await res.json();
+    return data.users || [];
   } catch (error) {
     console.error("Error fetching users:", error);
     return [];
@@ -23,48 +28,53 @@ export async function fetchUsers(): Promise<User[]> {
 }
 
 /**
- * Fetches a user by ID from the API
- * @param id The user ID
- * @returns The user or null if not found
+ * Fetch a user by ID with caching
+ * This function is used by server components
  */
 export async function fetchUserById(id: string): Promise<User | null> {
   try {
-    const response = await fetch(`/api/v1/users/${id}`, {
-      next: { revalidate: 60 }, // Revalidate every 60 seconds
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/${id}`, {
+      next: {
+        revalidate: 60, // Cache for 60 seconds
+        tags: ["users", `user-${id}`],
+      },
     });
 
-    if (!response.ok) {
-      if (response.status === 404) {
-        return null;
+    if (!res.ok) {
+      if (res.status === 404) {
+        return notFound();
       }
-      throw new Error("Failed to fetch user");
+      console.error("Failed to fetch user:", await res.text());
+      return null;
     }
 
-    return await response.json();
+    return await res.json();
   } catch (error) {
-    console.error(`Error fetching user ${id}:`, error);
+    console.error("Error fetching user:", error);
     return null;
   }
 }
 
 /**
- * Fetches the current user from the API
- * @returns The current user or null if not authenticated
+ * Fetch the current user
+ * This function is used by server components
+ * No caching for current user to ensure we always have the latest data
  */
 export async function fetchCurrentUser(): Promise<User | null> {
   try {
-    const response = await fetch("/api/v1/users/me", {
-      next: { revalidate: 0 }, // Always revalidate
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/me`, {
+      next: {
+        revalidate: 0, // No cache - always fetch the latest
+        tags: ["current-user"],
+      },
     });
 
-    if (!response.ok) {
-      if (response.status === 401) {
-        return null;
-      }
-      throw new Error("Failed to fetch current user");
+    if (!res.ok) {
+      console.error("Failed to fetch current user:", await res.text());
+      return null;
     }
 
-    return await response.json();
+    return await res.json();
   } catch (error) {
     console.error("Error fetching current user:", error);
     return null;

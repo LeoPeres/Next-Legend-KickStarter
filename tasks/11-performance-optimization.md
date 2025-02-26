@@ -4,7 +4,7 @@
   - [x] 11.1.1. Implement code splitting and lazy loading for components
   - [x] 11.1.2. Optimize images using Next.js Image component
   - [x] 11.1.3. Configure bundle analyzer and reduce bundle size
-  - [ ] 11.1.4. Implement server-side rendering (SSR) for data-heavy pages
+  - [x] 11.1.4. Implement server-side rendering (SSR) for data-heavy pages
   - [ ] 11.1.5. Add caching strategies for API responses
   - [ ] 11.1.6. Optimize fonts loading with next/font
   - [ ] 11.1.7. Implement route prefetching for common navigation paths
