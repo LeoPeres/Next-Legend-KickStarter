@@ -2,7 +2,7 @@
 
 - [ ] **11.1. Frontend Performance** (Responsible: Performance Engineer)
   - [x] 11.1.1. Implement code splitting and lazy loading
-  - [ ] 11.1.2. Optimize images using Next.js Image component
+  - [x] 11.1.2. Optimize images using Next.js Image component
   - [ ] 11.1.3. Configure bundle analyzer and reduce bundle size
   - [ ] 11.1.4. Implement performance monitoring metrics
 
