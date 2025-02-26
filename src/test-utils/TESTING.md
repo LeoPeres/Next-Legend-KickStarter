@@ -88,4 +88,76 @@ Tests are run automatically on:
 - [Jest Documentation](https://jestjs.io/docs/getting-started)
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 - [Testing Library Queries](https://testing-library.com/docs/queries/about)
-- [Common Testing Library Mistakes](https://kentcdodds.com/blog/common-mistakes-with-react-testing-library) 
+- [Common Testing Library Mistakes](https://kentcdodds.com/blog/common-mistakes-with-react-testing-library)
+
+## E2E Testing with Playwright
+
+We use Playwright for end-to-end testing to ensure our application works correctly from a user's perspective.
+
+### Running E2E Tests
+
+```bash
+# Run all E2E tests
+npm run test:e2e
+
+# Run E2E tests with UI
+npm run test:e2e:ui
+
+# Debug E2E tests
+npm run test:e2e:debug
+
+# View test report
+npm run test:e2e:report
+```
+
+### Page Object Model
+
+We follow the Page Object Model pattern for E2E tests:
+
+- Page objects are in `e2e-tests/page-objects/`
+- Test fixtures are in `e2e-tests/fixtures/`
+- Test specs are in `e2e-tests/*.spec.ts`
+
+### Visual Regression Testing
+
+Visual regression tests ensure UI components look correct across different browsers and screen sizes:
+
+```typescript
+test('component should match snapshot', async ({ page }) => {
+  // Setup component
+  await page.goto('/component-page');
+  
+  // Take screenshot and compare with baseline
+  await expect(page).toHaveScreenshot('component.png');
+});
+```
+
+### CI Integration
+
+E2E tests run automatically on GitHub Actions for:
+- Pull requests to main branch
+- Pushes to main branch
+
+Test reports are uploaded as artifacts and can be downloaded from the GitHub Actions workflow.
+
+## Current Testing Status
+
+### Completed
+- ✅ Unit Testing Setup: Jest and React Testing Library are configured
+- ✅ Component Testing: Test templates, snapshot tests, and interaction tests are implemented
+- ✅ Test Utilities: Mocks for browser APIs (matchMedia, ResizeObserver) and providers
+- ✅ Type Definitions: Extended Jest matchers for DOM testing
+- ✅ E2E Testing: Playwright configured with page objects and critical user journeys
+- ✅ Visual Regression Testing: Set up with Playwright
+- ✅ CI Integration: GitHub Actions workflow for automated testing
+
+### In Progress
+- 🔄 Test Coverage: Currently at ~4% overall, aiming for 80%
+- 🔄 Component Tests: More components need tests
+
+## Next Steps
+
+1. Increase test coverage by adding tests for more components
+2. Add more comprehensive E2E tests for complex user flows
+3. Integrate test results reporting into development workflow
+4. Set up performance testing benchmarks 

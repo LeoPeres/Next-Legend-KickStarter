@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input Snapshots renders default input correctly 1`] = `
+<div>
+  <input
+    class="flex h-10 w-full rounded-md px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-background border border-input"
+    placeholder="Default Input"
+  />
+</div>
+`;
+
+exports[`Input Snapshots renders disabled input correctly 1`] = `
+<div>
+  <input
+    class="flex h-10 w-full rounded-md px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-background border border-input"
+    disabled=""
+    placeholder="Disabled Input"
+  />
+</div>
+`;
+
+exports[`Input Snapshots renders filled input correctly 1`] = `
+<div>
+  <input
+    class="flex h-10 w-full rounded-md px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-muted border-0"
+    placeholder="Filled Input"
+  />
+</div>
+`;
+
+exports[`Input Snapshots renders input with different types correctly: email-input 1`] = `
+<div>
+  <input
+    class="flex h-10 w-full rounded-md px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-background border border-input"
+    placeholder="Email Input"
+    type="email"
+  />
+</div>
+`;
+
+exports[`Input Snapshots renders input with different types correctly: number-input 1`] = `
+<div>
+  <input
+    class="flex h-10 w-full rounded-md px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-background border border-input"
+    placeholder="Number Input"
+    type="number"
+  />
+</div>
+`;
+
+exports[`Input Snapshots renders input with different types correctly: password-input 1`] = `
+<div>
+  <input
+    class="flex h-10 w-full rounded-md px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-background border border-input"
+    placeholder="Password Input"
+    type="password"
+  />
+</div>
+`;
+
+exports[`Input Snapshots renders input with different types correctly: text-input 1`] = `
+<div>
+  <input
+    class="flex h-10 w-full rounded-md px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-background border border-input"
+    placeholder="Text Input"
+    type="text"
+  />
+</div>
+`;
+
+exports[`Input Snapshots renders input with value correctly 1`] = `
+<div>
+  <input
+    class="flex h-10 w-full rounded-md px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-background border border-input"
+    readonly=""
+    value="Input with value"
+  />
+</div>
+`;
+
+exports[`Input Snapshots renders underlined input correctly 1`] = `
+<div>
+  <input
+    class="flex h-10 w-full py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-0 border-b border-input bg-transparent px-0 rounded-none"
+    placeholder="Underlined Input"
+  />
+</div>
+`;
