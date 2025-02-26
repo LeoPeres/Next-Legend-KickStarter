@@ -15,7 +15,7 @@ export const Header = observer(() => {
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-6">
-          <Link href="/" className="font-bold text-xl flex items-center gap-2">
+          <Link href="/" className="font-bold text-xl flex items-center gap-2" prefetch={true}>
             <div className="relative w-8 h-8">
               <Image
                 src="/logo.svg"
@@ -29,13 +29,17 @@ export const Header = observer(() => {
             <span>Next-Legend</span>
           </Link>
           <nav className="hidden md:flex gap-6">
-            <Link href="/" className="text-sm font-medium hover:text-primary">
+            <Link href="/" className="text-sm font-medium hover:text-primary" prefetch={true}>
               Home
             </Link>
-            <Link href="/features" className="text-sm font-medium hover:text-primary">
+            <Link
+              href="/features"
+              className="text-sm font-medium hover:text-primary"
+              prefetch={true}
+            >
               Features
             </Link>
-            <Link href="/about" className="text-sm font-medium hover:text-primary">
+            <Link href="/about" className="text-sm font-medium hover:text-primary" prefetch={true}>
               About
             </Link>
           </nav>
@@ -52,10 +56,14 @@ export const Header = observer(() => {
           ) : (
             <div className="flex items-center gap-2">
               <Button variant="ghost" size="sm" asChild>
-                <Link href="/login">Login</Link>
+                <Link href="/login" prefetch={true}>
+                  Login
+                </Link>
               </Button>
               <Button size="sm" asChild>
-                <Link href="/register">Register</Link>
+                <Link href="/register" prefetch={true}>
+                  Register
+                </Link>
               </Button>
             </div>
           )}

@@ -35,9 +35,15 @@ export default async function DashboardPage() {
     redirect("/login");
   }
 
+  // Convert the user to match the store's User type
+  const storeUser = {
+    ...user,
+    id: String(user.id), // Convert id to string to match the store's User type
+  };
+
   return (
     <Suspense fallback={<DashboardSkeleton />}>
-      <DashboardClient initialUser={user} />
+      <DashboardClient initialUser={storeUser} />
     </Suspense>
   );
 }

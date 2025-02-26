@@ -16,17 +16,29 @@ export function Footer() {
             <h3 className="text-sm font-semibold">Resources</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/docs" className="text-muted-foreground hover:text-foreground">
+                <Link
+                  href="/docs"
+                  className="text-muted-foreground hover:text-foreground"
+                  prefetch={true}
+                >
                   Documentation
                 </Link>
               </li>
               <li>
-                <Link href="/guides" className="text-muted-foreground hover:text-foreground">
+                <Link
+                  href="/guides"
+                  className="text-muted-foreground hover:text-foreground"
+                  prefetch={true}
+                >
                   Guides
                 </Link>
               </li>
               <li>
-                <Link href="/api" className="text-muted-foreground hover:text-foreground">
+                <Link
+                  href="/api"
+                  className="text-muted-foreground hover:text-foreground"
+                  prefetch={true}
+                >
                   API Reference
                 </Link>
               </li>
@@ -36,17 +48,29 @@ export function Footer() {
             <h3 className="text-sm font-semibold">Company</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/about" className="text-muted-foreground hover:text-foreground">
+                <Link
+                  href="/about"
+                  className="text-muted-foreground hover:text-foreground"
+                  prefetch={true}
+                >
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-muted-foreground hover:text-foreground">
+                <Link
+                  href="/blog"
+                  className="text-muted-foreground hover:text-foreground"
+                  prefetch={true}
+                >
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href="/careers" className="text-muted-foreground hover:text-foreground">
+                <Link
+                  href="/careers"
+                  className="text-muted-foreground hover:text-foreground"
+                  prefetch={true}
+                >
                   Careers
                 </Link>
               </li>
@@ -56,12 +80,20 @@ export function Footer() {
             <h3 className="text-sm font-semibold">Legal</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/privacy" className="text-muted-foreground hover:text-foreground">
+                <Link
+                  href="/privacy"
+                  className="text-muted-foreground hover:text-foreground"
+                  prefetch={true}
+                >
                   Privacy
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="text-muted-foreground hover:text-foreground">
+                <Link
+                  href="/terms"
+                  className="text-muted-foreground hover:text-foreground"
+                  prefetch={true}
+                >
                   Terms
                 </Link>
               </li>
@@ -76,15 +108,21 @@ export function Footer() {
             <Link
               href="https://twitter.com"
               className="text-muted-foreground hover:text-foreground"
+              prefetch={false}
             >
               Twitter
             </Link>
-            <Link href="https://github.com" className="text-muted-foreground hover:text-foreground">
+            <Link
+              href="https://github.com"
+              className="text-muted-foreground hover:text-foreground"
+              prefetch={false}
+            >
               GitHub
             </Link>
             <Link
               href="https://discord.com"
               className="text-muted-foreground hover:text-foreground"
+              prefetch={false}
             >
               Discord
             </Link>
