@@ -12,8 +12,8 @@
   - [x] 10.2.3. Document theming and customization options
   - [x] 10.2.4. Create interactive component playground
 
-- [ ] **10.3. Developer Guides** (Responsible: Technical Writer)
-  - [ ] 10.3.1. Create onboarding documentation for new developers
-  - [ ] 10.3.2. Document coding standards and best practices
-  - [ ] 10.3.3. Create troubleshooting guides
-  - [ ] 10.3.4. Document testing strategies and patterns 
+- [x] **10.3. Developer Guides** (Responsible: Technical Writer)
+  - [x] 10.3.1. Create onboarding documentation for new developers
+  - [x] 10.3.2. Document coding standards and best practices
+  - [x] 10.3.3. Create troubleshooting guides
+  - [x] 10.3.4. Document testing strategies and patterns 

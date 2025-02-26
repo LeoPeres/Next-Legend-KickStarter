@@ -1,200 +1,167 @@
 # Environment Setup Guide
 
-This guide will help you set up your development environment for the Next-Legend-KickStarter project.
+This guide will walk you through setting up your development environment for the Next-Legend-KickStarter project.
 
 ## Prerequisites
 
-Before you begin, make sure you have the following installed:
+Before you begin, make sure you have the following installed on your machine:
 
-- **Node.js** (v18.x or later)
-- **npm** (v9.x or later)
-- **Git** (v2.x or later)
-- **Docker** (optional, for local database)
-- **PostgreSQL** (if not using Docker)
+- **Node.js** (v18.0.0 or later)
+- **npm** (v9.0.0 or later)
+- **Git** (v2.30.0 or later)
+- **PostgreSQL** (v14.0 or later)
+- **Visual Studio Code** (recommended) or your preferred code editor
 
-## Step 1: Clone the Repository
+## Installation Steps
+
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/Next-Legend-KickStarter.git
-cd Next-Legend-KickStarter
+git clone https://github.com/your-organization/next-legend-kickstarter.git
+cd next-legend-kickstarter
 ```
 
-## Step 2: Install Dependencies
+### 2. Install Dependencies
 
 ```bash
 npm install
 ```
 
-## Step 3: Set Up Environment Variables
+### 3. Set Up Environment Variables
 
-Create a `.env.local` file in the root directory with the following variables:
+Create a `.env.local` file in the root directory of the project:
+
+```bash
+cp .env.example .env.local
+```
+
+Update the `.env.local` file with your local configuration:
 
 ```
 # Database
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/next_legend"
+DATABASE_URL=postgresql://username:password@localhost:5432/next_legend_db
 
-# Supabase
-SUPABASE_URL="https://your-supabase-url.supabase.co"
-SUPABASE_ANON_KEY="your-supabase-anon-key"
+# Authentication
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your-secret-key
 
-# Sentry (for error tracking)
-SENTRY_DSN="your-sentry-dsn"
-SENTRY_AUTH_TOKEN="your-sentry-auth-token"
-
-# Analytics
-NEXT_PUBLIC_ANALYTICS_ID="your-analytics-id"
+# API Keys (if needed)
+API_KEY=your-api-key
 ```
 
-### Environment Variables for Different Environments
+### 4. Set Up the Database
 
-- `.env.local` - Local development
-- `.env.staging` - Staging environment
-- `.env.production` - Production environment
-
-## Step 4: Set Up the Database
-
-### Option 1: Using Docker
-
-The project includes a Docker Compose file for setting up PostgreSQL:
+Make sure your PostgreSQL server is running, then create a new database:
 
 ```bash
-docker-compose up -d postgres
+createdb next_legend_db
 ```
 
-### Option 2: Using Local PostgreSQL
-
-If you have PostgreSQL installed locally:
-
-1. Create a new database:
-   ```bash
-   createdb next_legend
-   ```
-
-2. Update the `DATABASE_URL` in your `.env.local` file to point to your local PostgreSQL instance.
-
-### Run Migrations
-
-After setting up the database, run the migrations:
+Run the database migrations:
 
 ```bash
 npm run db:migrate
 ```
 
-## Step 5: Set Up Supabase (Optional)
+Seed the database with initial data (if available):
 
-If you're using Supabase for authentication and storage:
+```bash
+npm run db:seed
+```
 
-1. Create a new project on [Supabase](https://supabase.com/)
-2. Get your project URL and anon key from the project settings
-3. Update the Supabase environment variables in your `.env.local` file
-
-## Step 6: Set Up Sentry (Optional)
-
-If you're using Sentry for error tracking:
-
-1. Create a new project on [Sentry](https://sentry.io/)
-2. Get your DSN and auth token
-3. Update the Sentry environment variables in your `.env.local` file
-
-## Step 7: Start the Development Server
+### 5. Start the Development Server
 
 ```bash
 npm run dev
 ```
 
-Your application should now be running at [http://localhost:3000](http://localhost:3000).
+The application should now be running at [http://localhost:3000](http://localhost:3000).
 
-## Additional Setup
+## Development Tools
 
-### Setting Up Storybook
+### VS Code Extensions
 
-To run Storybook for component development:
+We recommend installing the following VS Code extensions for a better development experience:
 
-```bash
-npm run storybook
-```
+- **ESLint**: JavaScript linting
+- **Prettier**: Code formatting
+- **Tailwind CSS IntelliSense**: Autocomplete for Tailwind CSS classes
+- **TypeScript Hero**: TypeScript imports management
+- **GitLens**: Git integration
+- **Error Lens**: Inline error display
 
-Storybook will be available at [http://localhost:6006](http://localhost:6006).
+### Browser Extensions
 
-### Setting Up Testing
-
-#### Unit Tests with Jest
-
-Run unit tests:
-
-```bash
-npm run test
-```
-
-Run tests in watch mode:
-
-```bash
-npm run test:watch
-```
-
-Generate coverage report:
-
-```bash
-npm run test:coverage
-```
-
-#### E2E Tests with Playwright
-
-Install Playwright browsers:
-
-```bash
-npx playwright install
-```
-
-Run E2E tests:
-
-```bash
-npm run test:e2e
-```
-
-Run E2E tests with UI:
-
-```bash
-npm run test:e2e:ui
-```
-
-### Git Hooks
-
-The project uses Husky for Git hooks. These are automatically set up when you run `npm install`.
-
-The hooks include:
-- Pre-commit: Runs linting and formatting on staged files
-- Pre-push: Runs tests
+- **React Developer Tools**: For debugging React components
+- **Redux DevTools**: For debugging state management (if using Redux)
 
 ## Troubleshooting
 
-### Database Connection Issues
+### Common Installation Issues
 
-If you're having trouble connecting to the database:
+#### Node.js Version
 
-1. Make sure your PostgreSQL server is running
-2. Check that the `DATABASE_URL` in your `.env.local` file is correct
-3. Try running `npm run db:check` to verify the connection
+If you encounter issues with Node.js compatibility, make sure you're using the correct version:
 
-### Supabase Authentication Issues
+```bash
+node -v
+```
 
-If you're having trouble with Supabase authentication:
+If needed, you can use [nvm](https://github.com/nvm-sh/nvm) to install and switch to the required Node.js version:
 
-1. Make sure your Supabase project is set up correctly
-2. Check that the Supabase environment variables in your `.env.local` file are correct
-3. Make sure you've enabled the authentication providers you want to use in the Supabase dashboard
+```bash
+nvm install 18
+nvm use 18
+```
 
-### Node.js Version Issues
+#### PostgreSQL Connection
 
-This project requires Node.js v18 or later. If you're using an older version, you may encounter errors. You can use [nvm](https://github.com/nvm-sh/nvm) to manage multiple Node.js versions.
+If you have trouble connecting to PostgreSQL:
+
+1. Make sure the PostgreSQL service is running:
+   ```bash
+   # On macOS
+   brew services start postgresql
+   
+   # On Ubuntu
+   sudo service postgresql start
+   
+   # On Windows
+   # Check Services application
+   ```
+
+2. Verify your PostgreSQL credentials:
+   ```bash
+   psql -U your_username -d postgres
+   ```
+
+3. Check that the `DATABASE_URL` in your `.env.local` file is correct.
+
+#### Package Installation Errors
+
+If you encounter errors during `npm install`:
+
+1. Clear the npm cache:
+   ```bash
+   npm cache clean --force
+   ```
+
+2. Delete the `node_modules` directory and `package-lock.json` file:
+   ```bash
+   rm -rf node_modules package-lock.json
+   ```
+
+3. Reinstall the dependencies:
+   ```bash
+   npm install
+   ```
 
 ## Next Steps
 
-Now that your environment is set up, you can:
+Once your environment is set up, you can:
 
-- Explore the codebase
-- Run the application
-- Make changes and see them reflected in real-time
-- Run tests to ensure your changes don't break existing functionality
+1. Read the [Developer Onboarding Guide](./onboarding.md) to learn more about the project.
+2. Explore the [Project Structure and Architecture](./project-structure.md) to understand how the codebase is organized.
+3. Check out the [Component Library Documentation](./component-library.md) to learn about the UI components available in the project.
 
-For more information on the project structure and architecture, see [project-structure.md](./project-structure.md). 
+If you encounter any issues not covered in this guide, please reach out to the team for assistance. 

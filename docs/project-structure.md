@@ -1,174 +1,201 @@
 # Project Structure and Architecture
 
-This document provides a detailed overview of the Next-Legend-KickStarter project structure and architecture.
+This document provides an overview of the Next-Legend-KickStarter project structure and architecture.
 
-## Directory Structure
+## Technology Stack
+
+The project is built with the following technologies:
+
+- **Next.js**: React framework for server-side rendering and static site generation
+- **TypeScript**: Typed JavaScript for better developer experience and code quality
+- **Tailwind CSS**: Utility-first CSS framework for styling
+- **Legend State**: State management library
+- **Drizzle ORM**: TypeScript ORM for database access
+- **PostgreSQL**: Relational database
+- **Shadcn UI**: Component library based on Radix UI and Tailwind CSS
+- **Storybook**: Tool for developing UI components in isolation
+
+## Project Structure
 
 ```
-├── public/             # Static assets
-├── src/
-│   ├── app/            # App router pages and layouts
-│   │   ├── api/        # API routes
-│   │   ├── auth/       # Authentication pages
-│   │   ├── dashboard/  # Dashboard pages
-│   │   └── ...         # Other routes
-│   ├── components/     # Reusable UI components
-│   │   ├── ui/         # Base UI components (shadcn/ui)
-│   │   └── ...         # Custom components
-│   ├── hooks/          # Custom React hooks
-│   ├── lib/            # Utility functions and shared code
-│   │   ├── db/         # Database related code
-│   │   │   ├── schema/ # Database schema definitions
-│   │   │   └── index.ts # Database connection and utilities
-│   ├── styles/         # Global styles
-│   ├── types/          # TypeScript type definitions
-│   └── test-utils/     # Testing utilities
-├── tasks/              # Project tasks and checklists
-├── prompts/            # AI prompts for development
-├── drizzle/            # Database migrations
-├── e2e-tests/          # End-to-end tests with Playwright
-├── __mocks__/          # Jest mocks
-└── .storybook/         # Storybook configuration
+next-legend-kickstarter/
+├── .github/                  # GitHub workflows and templates
+├── .storybook/               # Storybook configuration
+├── docs/                     # Project documentation
+├── public/                   # Static assets
+├── src/                      # Source code
+│   ├── app/                  # Next.js app router
+│   │   ├── (auth)/           # Authentication routes
+│   │   ├── (dashboard)/      # Dashboard routes
+│   │   ├── api/              # API routes
+│   │   ├── globals.css       # Global CSS
+│   │   ├── layout.tsx        # Root layout
+│   │   └── page.tsx          # Home page
+│   ├── components/           # React components
+│   │   ├── ui/               # UI components
+│   │   └── [feature]/        # Feature-specific components
+│   ├── hooks/                # Custom React hooks
+│   ├── lib/                  # Utility functions and libraries
+│   │   ├── db/               # Database configuration and schemas
+│   │   ├── state/            # State management
+│   │   └── utils/            # Utility functions
+│   ├── stories/              # Storybook stories
+│   └── types/                # TypeScript type definitions
+├── tasks/                    # Project tasks and documentation
+├── .env.example              # Example environment variables
+├── .eslintrc.json           # ESLint configuration
+├── .gitignore               # Git ignore file
+├── drizzle.config.ts        # Drizzle ORM configuration
+├── next.config.js           # Next.js configuration
+├── package.json             # Project dependencies and scripts
+├── postcss.config.js        # PostCSS configuration
+├── tailwind.config.ts       # Tailwind CSS configuration
+└── tsconfig.json            # TypeScript configuration
 ```
 
 ## Architecture Overview
 
-Next-Legend-KickStarter follows a modern Next.js architecture with the following key components:
+The project follows a modern React architecture with Next.js, emphasizing server components, type safety, and component-based design.
 
-### Frontend Architecture
+### Key Architectural Patterns
 
-#### App Router
+#### 1. App Router
 
-The project uses Next.js App Router for routing and layouts. This provides:
+Next.js App Router is used for routing, which provides:
 - File-based routing
 - Nested layouts
+- Server components
+- Route groups
 - Loading states
 - Error handling
-- Server and client components
 
-#### Component Structure
+#### 2. Component Architecture
 
-Components are organized into:
-- **UI Components**: Base components from shadcn/ui (src/components/ui)
-- **Custom Components**: Application-specific components (src/components)
-- **Page Components**: Components specific to a page or route (src/app)
+Components are organized into two main categories:
+- **UI Components**: Reusable, presentational components in `src/components/ui/`
+- **Feature Components**: Components specific to features in `src/components/[feature]/`
 
-#### State Management
+#### 3. State Management
 
-- **Legend State**: Used for client-side state management
-- **Server State**: Leverages React Server Components for server-side state
-- **Supabase Integration**: Legend State integrates with Supabase for real-time updates
+Legend State is used for state management, providing:
+- Reactive state management
+- Server-side rendering compatibility
+- TypeScript integration
+- Optimized re-renders
 
-### Backend Architecture
+#### 4. Data Access Layer
 
-#### API Routes
+Drizzle ORM is used for database access, providing:
+- Type-safe database queries
+- Schema definition
+- Migrations
+- Query building
 
-Next.js API routes are used for backend functionality:
-- RESTful endpoints in `src/app/api`
-- Authentication endpoints
-- Data fetching and mutation
+### Request Flow
 
-#### Database Layer
+1. **Client Request**: User interacts with the application
+2. **Next.js Router**: Routes the request to the appropriate page
+3. **Server Component**: Renders on the server and fetches data if needed
+4. **Data Access**: Server components access data through the data access layer
+5. **State Management**: Client components use Legend State for client-side state
+6. **Response**: Rendered HTML is sent to the client
+7. **Hydration**: Client-side JavaScript hydrates the page for interactivity
 
-- **Drizzle ORM**: Type-safe database access
-- **PostgreSQL**: Relational database for data storage
-- **Schema**: Defined in `src/lib/db/schema`
-- **Migrations**: Managed with Drizzle Kit in the `drizzle` directory
+## Key Directories and Files
 
-#### Authentication
+### `/src/app`
 
-- **Supabase Auth**: For authentication and user management
-- **Auth Providers**: Multiple authentication providers (email/password, social)
-- **Protected Routes**: Implementation in `src/components/protected-route.tsx`
-- **Permission Guards**: Implementation in `src/components/permission-guard.tsx`
+Contains the Next.js App Router pages and layouts. Each directory represents a route in the application.
 
-### Testing Architecture
+### `/src/components`
 
-- **Unit Tests**: Jest for component and utility testing
-- **E2E Tests**: Playwright for end-to-end testing
-- **Storybook**: For component development and visual testing
-- **Test Utilities**: Helper functions in `src/test-utils`
+Contains all React components used in the application:
+- `/ui`: UI components from the component library
+- `/[feature]`: Feature-specific components
 
-### Monitoring and Analytics
+### `/src/lib`
 
-- **Sentry**: For error tracking and monitoring
-- **Vercel Analytics**: For performance monitoring
-- **Custom Analytics**: Implementation in `src/components/analytics-provider.tsx`
+Contains utility functions and libraries:
+- `/db`: Database configuration, schemas, and migrations
+- `/state`: State management setup and stores
+- `/utils`: Utility functions used throughout the application
 
-## Key Design Patterns
+### `/src/hooks`
 
-### Provider Pattern
+Contains custom React hooks for reusing logic across components.
 
-The application uses the Provider pattern for various global services:
-- `auth-provider.tsx`: Authentication context
-- `theme-provider.tsx`: Theme context
-- `supabase-provider.tsx`: Supabase client
-- `analytics-provider.tsx`: Analytics tracking
+### `/src/types`
 
-### Component Composition
+Contains TypeScript type definitions used throughout the application.
 
-UI components are built using composition:
-- Base components from shadcn/ui
-- Composed into more complex components
-- Props for customization and flexibility
+### `/docs`
 
-### Server/Client Component Pattern
+Contains project documentation, including:
+- Architecture documentation
+- Component library documentation
+- Developer guides
+- API documentation
 
-The application leverages Next.js server and client components:
-- Server components for data fetching and rendering
-- Client components for interactivity
-- Clear boundaries between server and client code
+## Database Schema
 
-### Data Fetching Patterns
+The database schema is defined in `src/lib/db/schema/` and includes the following tables:
 
-- Server components for direct database access
-- API routes for client-side data fetching
-- SWR or React Query for data fetching in client components
-
-## Configuration Files
-
-- `next.config.js`: Next.js configuration
-- `tailwind.config.ts`: Tailwind CSS configuration
-- `tsconfig.json`: TypeScript configuration
-- `jest.config.js`: Jest configuration
-- `playwright.config.ts`: Playwright configuration
-- `drizzle.config.ts`: Drizzle ORM configuration
-- `.env.*`: Environment variables for different environments
-
-## Deployment Architecture
-
-The application is configured for deployment on Vercel:
-- Automatic deployments from Git
-- Environment variables managed in Vercel dashboard
-- Edge functions for API routes
-- CDN for static assets
-
-For more details on deployment, see [deployment.md](./deployment.md).
-
-## Database Architecture
-
-The database schema is defined using Drizzle ORM:
-- Tables and relationships in `src/lib/db/schema`
-- Migrations in `drizzle` directory
-- Connection pooling for efficient database access
-
-For more details on the database, see [DATABASE.md](../DATABASE.md).
+- **users**: User information
+- **accounts**: Authentication accounts
+- **sessions**: User sessions
+- **projects**: Project information
+- **tasks**: Task information
+- **comments**: Comment information
 
 ## Authentication Flow
 
-The authentication flow is implemented using Supabase Auth:
-- Sign up, sign in, and sign out
-- Password reset
-- Social authentication
-- Protected routes
+The authentication flow is handled by NextAuth.js and follows these steps:
 
-For more details on authentication, see [authentication.md](./authentication.md).
+1. User navigates to a protected route
+2. If not authenticated, user is redirected to the login page
+3. User authenticates with a provider (e.g., email, Google, GitHub)
+4. NextAuth.js creates a session
+5. User is redirected back to the protected route
 
-## Monitoring and Error Tracking
+## Deployment Architecture
 
-The application uses Sentry for error tracking and monitoring:
-- Error boundaries for graceful error handling
-- Performance monitoring
-- Error tracking and reporting
+The application is deployed using a modern cloud architecture:
 
-For more details on monitoring, see [monitoring.md](./monitoring.md). 
+1. **Frontend**: Next.js application deployed on Vercel
+2. **Database**: PostgreSQL database hosted on a cloud provider
+3. **Assets**: Static assets served from a CDN
+4. **CI/CD**: Automated testing and deployment using GitHub Actions
+
+## Performance Considerations
+
+The application is optimized for performance in several ways:
+
+1. **Server Components**: Reduce client-side JavaScript
+2. **Code Splitting**: Automatically split code by route
+3. **Image Optimization**: Next.js Image component for optimized images
+4. **Caching**: Leveraging Next.js caching mechanisms
+5. **Prefetching**: Prefetch links for faster navigation
+
+## Security Considerations
+
+The application implements several security measures:
+
+1. **Authentication**: Secure authentication with NextAuth.js
+2. **Authorization**: Role-based access control
+3. **CSRF Protection**: Protection against cross-site request forgery
+4. **Content Security Policy**: Restrictions on content sources
+5. **Input Validation**: Validation of all user inputs
+6. **Secure Headers**: HTTP security headers
+
+## Testing Strategy
+
+The project uses a comprehensive testing strategy:
+
+1. **Unit Tests**: Testing individual components and functions
+2. **Integration Tests**: Testing how components work together
+3. **End-to-End Tests**: Testing the application as a whole
+4. **Visual Regression Tests**: Testing UI components visually
+
+## Conclusion
+
+This document provides an overview of the project structure and architecture. For more detailed information, refer to the specific documentation for each component or feature. 
