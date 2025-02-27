@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { errorResponse } from "@/lib/api-utils";
-
-// Simple in-memory store for rate limiting
-// In production, you would use Redis or another distributed cache
-const rateLimitStore: Record<string, { count: number; resetTime: number }> = {};
+import { getRedisClient } from "@/lib/redis";
 
 // Rate limit configuration
 const RATE_LIMIT = {
@@ -22,55 +19,95 @@ export async function rateLimitMiddleware(request: NextRequest): Promise<NextRes
 
   // Create a key based on IP and path
   const path = request.nextUrl.pathname;
-  const key = `${ip}:${path}`;
+  const key = `ratelimit:${ip}:${path}`;
 
   const now = Date.now();
+  const windowExpireMs = RATE_LIMIT.WINDOW_MS;
 
-  // Initialize or get the rate limit data for this key
-  if (!rateLimitStore[key] || rateLimitStore[key].resetTime < now) {
-    rateLimitStore[key] = {
-      count: 0,
-      resetTime: now + RATE_LIMIT.WINDOW_MS,
-    };
-  }
+  try {
+    const redis = getRedisClient();
 
-  // Increment the request count
-  rateLimitStore[key].count++;
+    // Use Redis for rate limiting with a sliding window
+    const [count, resetTime] = await Promise.all([
+      // Increment the counter
+      redis.incr(key),
+      // Get the TTL or set it if it doesn't exist
+      redis.pttl(key).then((ttl) => {
+        if (ttl === -1 || ttl === -2) {
+          // Key doesn't exist or has no expiry, set it
+          redis.pexpire(key, windowExpireMs);
+          return now + windowExpireMs;
+        }
+        return now + ttl;
+      }),
+    ]);
 
-  // Check if the rate limit has been exceeded
-  if (rateLimitStore[key].count > RATE_LIMIT.MAX_REQUESTS) {
-    const resetTime = new Date(rateLimitStore[key].resetTime);
+    // Check if the rate limit has been exceeded
+    if (count > RATE_LIMIT.MAX_REQUESTS) {
+      // Return a rate limit exceeded response
+      const response = errorResponse("Rate limit exceeded", 429);
+      response.headers.set("Retry-After", Math.ceil((resetTime - now) / 1000).toString());
+      response.headers.set("X-RateLimit-Limit", RATE_LIMIT.MAX_REQUESTS.toString());
+      response.headers.set("X-RateLimit-Remaining", "0");
+      response.headers.set("X-RateLimit-Reset", Math.ceil(resetTime / 1000).toString());
 
-    // Return a rate limit exceeded response
-    const response = errorResponse("Rate limit exceeded", 429);
-    response.headers.set(
-      "Retry-After",
-      Math.ceil((rateLimitStore[key].resetTime - now) / 1000).toString()
+      return response;
+    }
+
+    // Add rate limit headers to the response
+    // This will be handled in the corsMiddleware
+    request.headers.set("X-RateLimit-Limit", RATE_LIMIT.MAX_REQUESTS.toString());
+    request.headers.set("X-RateLimit-Remaining", (RATE_LIMIT.MAX_REQUESTS - count).toString());
+    request.headers.set("X-RateLimit-Reset", Math.ceil(resetTime / 1000).toString());
+
+    // Allow the request to continue
+    return undefined;
+  } catch (error) {
+    // If Redis fails, fall back to in-memory rate limiting
+    console.error("Redis rate limiting error:", error);
+
+    // Simple in-memory store for rate limiting fallback
+    const rateLimitStore: Record<string, { count: number; resetTime: number }> = {};
+
+    // Initialize or get the rate limit data for this key
+    if (!rateLimitStore[key] || rateLimitStore[key].resetTime < now) {
+      rateLimitStore[key] = {
+        count: 0,
+        resetTime: now + RATE_LIMIT.WINDOW_MS,
+      };
+    }
+
+    // Increment the request count
+    rateLimitStore[key].count++;
+
+    // Check if the rate limit has been exceeded
+    if (rateLimitStore[key].count > RATE_LIMIT.MAX_REQUESTS) {
+      const resetTime = rateLimitStore[key].resetTime;
+
+      // Return a rate limit exceeded response
+      const response = errorResponse("Rate limit exceeded", 429);
+      response.headers.set("Retry-After", Math.ceil((resetTime - now) / 1000).toString());
+      response.headers.set("X-RateLimit-Limit", RATE_LIMIT.MAX_REQUESTS.toString());
+      response.headers.set("X-RateLimit-Remaining", "0");
+      response.headers.set("X-RateLimit-Reset", Math.ceil(resetTime / 1000).toString());
+
+      return response;
+    }
+
+    // Add rate limit headers to the response
+    request.headers.set("X-RateLimit-Limit", RATE_LIMIT.MAX_REQUESTS.toString());
+    request.headers.set(
+      "X-RateLimit-Remaining",
+      (RATE_LIMIT.MAX_REQUESTS - rateLimitStore[key].count).toString()
     );
-    response.headers.set("X-RateLimit-Limit", RATE_LIMIT.MAX_REQUESTS.toString());
-    response.headers.set("X-RateLimit-Remaining", "0");
-    response.headers.set(
+    request.headers.set(
       "X-RateLimit-Reset",
       Math.ceil(rateLimitStore[key].resetTime / 1000).toString()
     );
 
-    return response;
+    // Allow the request to continue
+    return undefined;
   }
-
-  // Add rate limit headers to the response
-  // This will be handled in the corsMiddleware
-  request.headers.set("X-RateLimit-Limit", RATE_LIMIT.MAX_REQUESTS.toString());
-  request.headers.set(
-    "X-RateLimit-Remaining",
-    (RATE_LIMIT.MAX_REQUESTS - rateLimitStore[key].count).toString()
-  );
-  request.headers.set(
-    "X-RateLimit-Reset",
-    Math.ceil(rateLimitStore[key].resetTime / 1000).toString()
-  );
-
-  // Allow the request to continue
-  return undefined;
 }
 
 /**

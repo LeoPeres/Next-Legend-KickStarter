@@ -33,6 +33,9 @@ export const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000
 // Database environment variables
 export const DATABASE_URL = process.env.DATABASE_URL || "";
 
+// Redis environment variables
+export const REDIS_URL = process.env.REDIS_URL || "redis://localhost:6379";
+
 // Define all environment variables with metadata
 const environmentVariables: EnvironmentVariable[] = [
   {
@@ -58,6 +61,12 @@ const environmentVariables: EnvironmentVariable[] = [
     value: DATABASE_URL,
     required: true,
     description: "The PostgreSQL connection string for Drizzle ORM",
+  },
+  {
+    name: "REDIS_URL",
+    value: REDIS_URL,
+    required: false,
+    description: "The Redis connection string for caching (defaults to redis://localhost:6379)",
   },
 ];
 
