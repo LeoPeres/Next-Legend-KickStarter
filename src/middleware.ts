@@ -1,89 +1,131 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 
-export async function middleware(request: NextRequest) {
-  // Create a Supabase client configured to use cookies
-  const supabase = createMiddlewareClient({ req: request, res: NextResponse.next() });
+// Define cache control directives for different content types
+const cacheControl = {
+  // Static assets (images, fonts, etc.)
+  static: "public, max-age=31536000, immutable", // 1 year
 
-  // Refresh session if expired - required for Server Components
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
+  // CSS and JavaScript files
+  assets: "public, max-age=86400, stale-while-revalidate=604800", // 1 day, stale for 1 week
 
-  // Check if this is an API route that requires authentication
-  if (request.nextUrl.pathname.startsWith("/api/protected")) {
-    if (!session) {
-      // Return a 401 response if not authenticated
-      return new NextResponse(
-        JSON.stringify({ error: "Unauthorized", message: "Authentication required" }),
-        {
-          status: 401,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-    }
-  }
+  // HTML pages for authenticated users
+  authenticated: "private, no-cache, no-store, must-revalidate",
 
-  // Check if this is an admin API route
-  if (request.nextUrl.pathname.startsWith("/api/admin")) {
-    if (!session) {
-      // Return a 401 response if not authenticated
-      return new NextResponse(
-        JSON.stringify({ error: "Unauthorized", message: "Authentication required" }),
-        {
-          status: 401,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-    }
+  // HTML pages for public users
+  public: "public, max-age=60, stale-while-revalidate=600", // 1 minute, stale for 10 minutes
 
-    // Check if user has admin role (in a real app, you'd check user metadata)
-    // For now, we'll just check if the user's email ends with @admin.com
-    const userEmail = session.user.email;
-    const isAdmin = userEmail?.endsWith("@admin.com");
+  // API responses
+  api: "private, no-cache, no-store, must-revalidate",
 
-    if (!isAdmin) {
-      // Return a 403 response if not authorized
-      return new NextResponse(
-        JSON.stringify({ error: "Forbidden", message: "Admin access required" }),
-        {
-          status: 403,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-    }
-  }
+  // API responses that can be cached
+  apiCacheable: "public, max-age=60, stale-while-revalidate=600", // 1 minute, stale for 10 minutes
+};
 
-  // Auth pages redirect
-  if (session && ["/login", "/register", "/forgot-password"].includes(request.nextUrl.pathname)) {
-    // Redirect authenticated users away from auth pages
-    return NextResponse.redirect(new URL("/dashboard", request.url));
-  }
-
-  // Continue with the request
-  return NextResponse.next();
+/**
+ * Determine if a request is for a static asset
+ * @param pathname The request pathname
+ * @returns Whether the request is for a static asset
+ */
+function isStaticAsset(pathname: string): boolean {
+  return /\.(jpg|jpeg|png|gif|svg|webp|ico|woff|woff2|ttf|eot|otf)$/.test(pathname);
 }
 
-// Specify which routes this middleware should run on
+/**
+ * Determine if a request is for a CSS or JavaScript file
+ * @param pathname The request pathname
+ * @returns Whether the request is for a CSS or JavaScript file
+ */
+function isAsset(pathname: string): boolean {
+  return /\.(css|js|json|xml|txt|pdf|map)$/.test(pathname);
+}
+
+/**
+ * Determine if a request is for an API endpoint
+ * @param pathname The request pathname
+ * @returns Whether the request is for an API endpoint
+ */
+function isApiRequest(pathname: string): boolean {
+  return pathname.startsWith("/api/");
+}
+
+/**
+ * Determine if an API request is cacheable
+ * @param pathname The request pathname
+ * @param method The request method
+ * @returns Whether the API request is cacheable
+ */
+function isApiCacheable(pathname: string, method: string): boolean {
+  // Only GET requests can be cached
+  if (method !== "GET") return false;
+
+  // Define API endpoints that can be cached
+  const cacheableEndpoints = ["/api/v1/posts", "/api/v1/categories", "/api/v1/tags"];
+
+  // Check if the pathname starts with any of the cacheable endpoints
+  return cacheableEndpoints.some((endpoint) => pathname.startsWith(endpoint));
+}
+
+/**
+ * Add cache control headers to the response
+ * @param req The Next.js request
+ * @param res The Next.js response
+ * @returns The response with cache control headers
+ */
+function addCacheHeaders(req: NextRequest, res: NextResponse): NextResponse {
+  const { pathname } = req.nextUrl;
+  const method = req.method;
+
+  // Set appropriate cache control headers based on the request
+  if (isStaticAsset(pathname)) {
+    res.headers.set("Cache-Control", cacheControl.static);
+  } else if (isAsset(pathname)) {
+    res.headers.set("Cache-Control", cacheControl.assets);
+  } else if (isApiRequest(pathname)) {
+    if (isApiCacheable(pathname, method)) {
+      res.headers.set("Cache-Control", cacheControl.apiCacheable);
+    } else {
+      res.headers.set("Cache-Control", cacheControl.api);
+    }
+  } else {
+    // For HTML pages, check if the user is authenticated
+    const supabase = createMiddlewareClient({ req, res });
+    const hasSession = req.cookies.has("supabase-auth-token");
+
+    if (hasSession) {
+      res.headers.set("Cache-Control", cacheControl.authenticated);
+    } else {
+      res.headers.set("Cache-Control", cacheControl.public);
+    }
+  }
+
+  // Add Vary header to ensure proper caching based on these headers
+  res.headers.set("Vary", "Accept-Encoding, Cookie");
+
+  return res;
+}
+
+/**
+ * Middleware function
+ * @param req The Next.js request
+ * @returns The Next.js response
+ */
+export async function middleware(req: NextRequest) {
+  const { pathname } = req.nextUrl;
+
+  // Get the response from the next middleware or route handler
+  const res = NextResponse.next();
+
+  // Add cache control headers
+  return addCacheHeaders(req, res);
+}
+
+/**
+ * Configure which paths the middleware should run on
+ */
 export const config = {
   matcher: [
-    // Apply to all API routes
-    "/api/:path*",
-    // Apply to auth pages
-    "/login",
-    "/register",
-    "/forgot-password",
-    // Apply to protected pages
-    "/dashboard/:path*",
-    "/admin/:path*",
-    "/profile/:path*",
-    "/settings/:path*",
+    // Apply to all paths except for specific ones
+    "/((?!_next/static|_next/image|favicon.ico).*)",
   ],
 };
