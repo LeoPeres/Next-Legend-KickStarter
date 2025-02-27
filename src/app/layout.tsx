@@ -9,6 +9,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { AnalyticsProvider } from "@/components/analytics-provider";
 import { PreloadIcons } from "@/components/preload-icons";
+import { ThirdPartyScripts } from "@/components/third-party-scripts";
 
 export const metadata: Metadata = {
   title: "Next-Legend-KickStarter",
@@ -29,6 +30,7 @@ export default function RootLayout({
             <AuthProvider>
               <AnalyticsProvider>
                 <PreloadIcons />
+                <ThirdPartyScripts />
                 <Header />
                 <main className="flex-1">{children}</main>
                 <Footer />
