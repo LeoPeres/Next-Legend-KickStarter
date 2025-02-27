@@ -11,6 +11,7 @@ import { AnalyticsProvider } from "@/components/analytics-provider";
 import { PreloadIcons } from "@/components/preload-icons";
 import { ThirdPartyScripts } from "@/components/third-party-scripts";
 import { ResourceHints } from "@/components/resource-hints";
+import { PerformanceMonitor } from "@/components/performance-monitor";
 
 export const metadata: Metadata = {
   title: "Next-Legend-KickStarter",
@@ -33,6 +34,7 @@ export default function RootLayout({
           <ThemeProvider>
             <AuthProvider>
               <AnalyticsProvider>
+                <PerformanceMonitor reportAllMetrics={true} />
                 <PreloadIcons />
                 <ThirdPartyScripts />
                 <Header />
