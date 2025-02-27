@@ -11,7 +11,7 @@
 - [x] 11.1.7. Implement route prefetching for common navigation paths
 - [x] 11.1.8. Add performance monitoring with web vitals
 - [x] 11.1.9. Optimize third-party scripts loading
-- [ ] 11.1.10. Implement HTTP/2 server push for critical assets
+- [x] 11.1.10. Implement resource hints (preconnect, prefetch, preload)
 
 ## 11.2. Server-Side Optimization
 

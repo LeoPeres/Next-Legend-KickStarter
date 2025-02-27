@@ -10,6 +10,7 @@ import { Footer } from "@/components/footer";
 import { AnalyticsProvider } from "@/components/analytics-provider";
 import { PreloadIcons } from "@/components/preload-icons";
 import { ThirdPartyScripts } from "@/components/third-party-scripts";
+import { ResourceHints } from "@/components/resource-hints";
 
 export const metadata: Metadata = {
   title: "Next-Legend-KickStarter",
@@ -24,6 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <ResourceHints />
+      </head>
       <body className={`${fontVariables} antialiased min-h-screen flex flex-col`}>
         <SupabaseProvider>
           <ThemeProvider>
