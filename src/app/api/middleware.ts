@@ -1,14 +1,75 @@
 import { NextRequest, NextResponse } from "next/server";
 import { errorResponse } from "@/lib/api-utils";
 
+// Simple in-memory store for rate limiting
+// In production, you would use Redis or another distributed cache
+const rateLimitStore: Record<string, { count: number; resetTime: number }> = {};
+
+// Rate limit configuration
+const RATE_LIMIT = {
+  MAX_REQUESTS: 100, // Maximum requests per window
+  WINDOW_MS: 60 * 1000, // 1 minute window
+};
+
 /**
  * Middleware for API rate limiting
  * @param request The Next.js request object
  * @returns NextResponse or undefined
  */
 export async function rateLimitMiddleware(request: NextRequest): Promise<NextResponse | undefined> {
-  // In a real application, this would check rate limits
-  // For now, we'll just return undefined to allow the request to continue
+  // Get client IP address
+  const ip = request.ip || request.headers.get("x-forwarded-for") || "unknown";
+
+  // Create a key based on IP and path
+  const path = request.nextUrl.pathname;
+  const key = `${ip}:${path}`;
+
+  const now = Date.now();
+
+  // Initialize or get the rate limit data for this key
+  if (!rateLimitStore[key] || rateLimitStore[key].resetTime < now) {
+    rateLimitStore[key] = {
+      count: 0,
+      resetTime: now + RATE_LIMIT.WINDOW_MS,
+    };
+  }
+
+  // Increment the request count
+  rateLimitStore[key].count++;
+
+  // Check if the rate limit has been exceeded
+  if (rateLimitStore[key].count > RATE_LIMIT.MAX_REQUESTS) {
+    const resetTime = new Date(rateLimitStore[key].resetTime);
+
+    // Return a rate limit exceeded response
+    const response = errorResponse("Rate limit exceeded", 429);
+    response.headers.set(
+      "Retry-After",
+      Math.ceil((rateLimitStore[key].resetTime - now) / 1000).toString()
+    );
+    response.headers.set("X-RateLimit-Limit", RATE_LIMIT.MAX_REQUESTS.toString());
+    response.headers.set("X-RateLimit-Remaining", "0");
+    response.headers.set(
+      "X-RateLimit-Reset",
+      Math.ceil(rateLimitStore[key].resetTime / 1000).toString()
+    );
+
+    return response;
+  }
+
+  // Add rate limit headers to the response
+  // This will be handled in the corsMiddleware
+  request.headers.set("X-RateLimit-Limit", RATE_LIMIT.MAX_REQUESTS.toString());
+  request.headers.set(
+    "X-RateLimit-Remaining",
+    (RATE_LIMIT.MAX_REQUESTS - rateLimitStore[key].count).toString()
+  );
+  request.headers.set(
+    "X-RateLimit-Reset",
+    Math.ceil(rateLimitStore[key].resetTime / 1000).toString()
+  );
+
+  // Allow the request to continue
   return undefined;
 }
 
@@ -46,6 +107,23 @@ export function corsMiddleware(request: NextRequest, response: NextResponse): Ne
   response.headers.set("Access-Control-Allow-Origin", "*");
   response.headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+  // Add rate limit headers if they exist in the request
+  const rateLimitLimit = request.headers.get("X-RateLimit-Limit");
+  const rateLimitRemaining = request.headers.get("X-RateLimit-Remaining");
+  const rateLimitReset = request.headers.get("X-RateLimit-Reset");
+
+  if (rateLimitLimit) {
+    response.headers.set("X-RateLimit-Limit", rateLimitLimit);
+  }
+
+  if (rateLimitRemaining) {
+    response.headers.set("X-RateLimit-Remaining", rateLimitRemaining);
+  }
+
+  if (rateLimitReset) {
+    response.headers.set("X-RateLimit-Reset", rateLimitReset);
+  }
 
   // Handle preflight requests
   if (request.method === "OPTIONS") {
