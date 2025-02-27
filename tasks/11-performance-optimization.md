@@ -7,9 +7,9 @@
 - [x] 11.1.3. Implement code splitting and lazy loading for components
 - [x] 11.1.4. Implement server-side rendering (SSR) for data-heavy pages
 - [x] 11.1.5. Add caching strategies for API responses
-- [ ] 11.1.6. Optimize fonts and icons loading
-- [ ] 11.1.7. Implement route prefetching for common navigation paths
-- [ ] 11.1.8. Add performance monitoring with web vitals
+- [x] 11.1.6. Optimize fonts and icons loading
+- [x] 11.1.7. Implement route prefetching for common navigation paths
+- [x] 11.1.8. Add performance monitoring with web vitals
 - [ ] 11.1.9. Optimize third-party scripts loading
 - [ ] 11.1.10. Implement HTTP/2 server push for critical assets
 
