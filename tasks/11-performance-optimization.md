@@ -24,5 +24,5 @@
 
 - [x] 11.3.1. Improve Largest Contentful Paint (LCP)
 - [x] 11.3.2. Optimize Cumulative Layout Shift (CLS)
-- [ ] 11.3.3. Enhance First Input Delay (FID) / Interaction to Next Paint (INP)
+- [x] 11.3.3. Enhance First Input Delay (FID) / Interaction to Next Paint (INP)
 - [ ] 11.3.4. Implement performance monitoring 
