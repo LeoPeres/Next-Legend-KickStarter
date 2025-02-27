@@ -1,0 +1,150 @@
+/**
+ * CLS (Cumulative Layout Shift) Optimizations
+ * 
+ * This file contains CSS rules specifically designed to minimize layout shifts
+ * during page load, improving the Core Web Vitals CLS metric.
+ */
+
+/* 
+ * Set explicit aspect ratios for common content containers
+ * This prevents layout shifts when content loads
+ */
+.aspect-ratio-container {
+  position: relative;
+  width: 100%;
+}
+
+.aspect-ratio-container::before {
+  content: "";
+  display: block;
+}
+
+/* 16:9 aspect ratio */
+.aspect-ratio-16-9::before {
+  padding-top: 56.25%;
+}
+
+/* 4:3 aspect ratio */
+.aspect-ratio-4-3::before {
+  padding-top: 75%;
+}
+
+/* 1:1 aspect ratio (square) */
+.aspect-ratio-1-1::before {
+  padding-top: 100%;
+}
+
+/* Content inside aspect ratio container */
+.aspect-ratio-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* 
+ * Reserve space for images and other media that might load slowly
+ * This prevents layout shifts when images load
+ */
+.image-container {
+  position: relative;
+  overflow: hidden;
+  background-color: hsl(var(--secondary-100));
+}
+
+.dark .image-container {
+  background-color: hsl(var(--secondary-800));
+}
+
+/* 
+ * Reserve space for fonts to prevent layout shifts when custom fonts load
+ * These values are based on common font metrics
+ */
+:root {
+  /* Font size adjustments to prevent CLS */
+  --font-size-adjustment: 0.5px;
+  --line-height-adjustment: 1.2;
+}
+
+/* 
+ * Prevent layout shifts from dynamically loaded content
+ * by setting min-heights on containers that will receive dynamic content
+ */
+.dynamic-content {
+  min-height: 1.5em; /* Minimum height for a line of text */
+}
+
+.dynamic-content-md {
+  min-height: 5em; /* Medium content area */
+}
+
+.dynamic-content-lg {
+  min-height: 10em; /* Large content area */
+}
+
+/* 
+ * Prevent layout shifts from loading states
+ * by maintaining consistent dimensions during loading
+ */
+.skeleton-text {
+  height: 1em;
+  margin-bottom: 0.5em;
+  background-color: hsl(var(--secondary-200));
+  border-radius: 0.25em;
+}
+
+.dark .skeleton-text {
+  background-color: hsl(var(--secondary-700));
+}
+
+/* 
+ * Prevent layout shifts from sticky elements
+ * by reserving space for them in the document flow
+ */
+.sticky-placeholder {
+  display: block;
+  height: var(--header-height, 64px);
+  visibility: hidden;
+}
+
+/* 
+ * Prevent layout shifts from scrollbars appearing/disappearing
+ * by always reserving space for the scrollbar
+ */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* 
+ * Prevent layout shifts from modal dialogs
+ * by setting overflow-y: scroll on the body when a modal is open
+ */
+body.modal-open {
+  overflow-y: scroll;
+}
+
+/* 
+ * Prevent layout shifts from dynamically injected content
+ * by using CSS containment where appropriate
+ */
+.contain-layout {
+  contain: layout;
+}
+
+.contain-size {
+  contain: size;
+}
+
+.contain-paint {
+  contain: paint;
+}
+
+/* 
+ * Prevent layout shifts from animations
+ * by using transform and opacity for animations instead of properties that trigger layout
+ */
+.safe-animation {
+  transition-property: transform, opacity;
+  will-change: transform, opacity;
+}

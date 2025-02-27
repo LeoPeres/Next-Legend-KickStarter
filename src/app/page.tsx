@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,14 +8,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { OptimizedImage } from "@/components/optimized-image";
 
 export default function Home() {
   return (
     <div className="flex flex-col gap-16 py-8 md:py-16">
       {/* Hero Section */}
       <section className="container flex flex-col items-center text-center gap-8">
-        <div className="relative w-32 h-32 mb-4">
-          <Image
+        <div className="w-32 h-32 mb-4">
+          <OptimizedImage
             src="/logo.svg"
             alt="Next-Legend KickStarter Logo"
             fill
@@ -24,6 +24,7 @@ export default function Home() {
             fetchPriority="high"
             sizes="(max-width: 768px) 100vw, 128px"
             className="object-contain"
+            aspectRatio="1:1"
           />
         </div>
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
@@ -56,19 +57,20 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <Card>
             <CardHeader>
-              <div className="relative w-12 h-12 mb-2">
-                <Image
+              <div className="w-12 h-12 mb-2">
+                <OptimizedImage
                   src="/next.svg"
                   alt="Next.js Logo"
                   fill
                   sizes="48px"
                   className="object-contain"
+                  aspectRatio="1:1"
                 />
               </div>
               <CardTitle>Next.js App Router</CardTitle>
               <CardDescription>Built on the latest Next.js App Router architecture</CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="dynamic-content">
               <p className="text-sm text-muted-foreground">
                 Leverage the power of React Server Components, streaming, and the latest Next.js
                 features.
@@ -82,19 +84,20 @@ export default function Home() {
           </Card>
           <Card>
             <CardHeader>
-              <div className="relative w-12 h-12 mb-2">
-                <Image
+              <div className="w-12 h-12 mb-2">
+                <OptimizedImage
                   src="/globe.svg"
                   alt="Legend State Logo"
                   fill
                   sizes="48px"
                   className="object-contain"
+                  aspectRatio="1:1"
                 />
               </div>
               <CardTitle>Legend State</CardTitle>
               <CardDescription>Reactive state management for React</CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="dynamic-content">
               <p className="text-sm text-muted-foreground">
                 Simple, powerful, and flexible state management with automatic reactivity and
                 persistence.
@@ -108,19 +111,20 @@ export default function Home() {
           </Card>
           <Card>
             <CardHeader>
-              <div className="relative w-12 h-12 mb-2">
-                <Image
+              <div className="w-12 h-12 mb-2">
+                <OptimizedImage
                   src="/file.svg"
                   alt="Supabase Logo"
                   fill
                   sizes="48px"
                   className="object-contain"
+                  aspectRatio="1:1"
                 />
               </div>
               <CardTitle>Supabase Integration</CardTitle>
               <CardDescription>Built-in authentication and database</CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="dynamic-content">
               <p className="text-sm text-muted-foreground">
                 Ready-to-use authentication and database with Supabase, the open-source Firebase
                 alternative.

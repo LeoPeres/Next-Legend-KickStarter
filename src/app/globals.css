@@ -3,6 +3,8 @@
 @tailwind utilities;
 /* Import global styles */
 @import "../styles/global-styles.css";
+/* Import CLS optimizations */
+@import "../styles/cls-optimizations.css";
 
 @layer base {
   :root {
