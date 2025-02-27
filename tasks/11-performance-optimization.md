@@ -15,14 +15,14 @@
 
 ## 11.2. Server-Side Optimization
 
-- [ ] 11.2.1. Implement API rate limiting
-- [ ] 11.2.2. Add database query optimization
-- [ ] 11.2.3. Implement server-side caching with Redis
-- [ ] 11.2.4. Configure proper HTTP caching headers
+- [x] 11.2.1. Implement API rate limiting
+- [x] 11.2.2. Add database query optimization
+- [x] 11.2.3. Implement server-side caching with Redis
+- [x] 11.2.4. Configure proper HTTP caching headers
 
 ## 11.3. Core Web Vitals Optimization
 
-- [ ] 11.3.1. Improve Largest Contentful Paint (LCP)
+- [x] 11.3.1. Improve Largest Contentful Paint (LCP)
 - [ ] 11.3.2. Optimize Cumulative Layout Shift (CLS)
 - [ ] 11.3.3. Enhance First Input Delay (FID) / Interaction to Next Paint (INP)
 - [ ] 11.3.4. Implement performance monitoring 

@@ -17,9 +17,10 @@ const PRECONNECT_DOMAINS: ResourceHint[] = [
   // Add domains that your app frequently connects to
   { href: "https://fonts.googleapis.com", type: "preconnect" },
   { href: "https://fonts.gstatic.com", type: "preconnect", crossOrigin: "anonymous" },
-  // Example for analytics, CDNs, etc.
-  // { href: 'https://www.googletagmanager.com', type: 'preconnect' },
-  // { href: 'https://cdn.jsdelivr.net', type: 'preconnect', crossOrigin: 'anonymous' },
+  // Supabase preconnect for faster auth and API calls
+  { href: "https://supabase.co", type: "preconnect" },
+  // Add CDN preconnect if you're using one
+  { href: "https://cdn.jsdelivr.net", type: "preconnect", crossOrigin: "anonymous" },
 ];
 
 /**
@@ -27,9 +28,12 @@ const PRECONNECT_DOMAINS: ResourceHint[] = [
  * These are resources that are needed early in the page lifecycle
  */
 const PRELOAD_RESOURCES: ResourceHint[] = [
-  // Add critical CSS, fonts, or other resources
-  // { href: '/fonts/main-font.woff2', type: 'preload', as: 'font', crossOrigin: 'anonymous' },
-  // { href: '/critical.css', type: 'preload', as: 'style' },
+  // Preload the logo which is likely the LCP element
+  { href: "/logo.svg", type: "preload", as: "image", importance: "high" },
+  // Preload critical fonts if you're using custom fonts
+  { href: "/fonts/inter-var.woff2", type: "preload", as: "font", crossOrigin: "anonymous" },
+  // Preload critical CSS
+  { href: "/styles/critical.css", type: "preload", as: "style" },
 ];
 
 /**
@@ -38,8 +42,13 @@ const PRELOAD_RESOURCES: ResourceHint[] = [
  */
 const PREFETCH_RESOURCES: ResourceHint[] = [
   // Add resources for likely navigation paths
-  // { href: '/api/common-data', type: 'prefetch' },
-  // { href: '/dashboard', type: 'prefetch' },
+  { href: "/docs", type: "prefetch" },
+  { href: "/login", type: "prefetch" },
+  { href: "/register", type: "prefetch" },
+  // Prefetch common images that might be needed soon
+  { href: "/next.svg", type: "prefetch", as: "image" },
+  { href: "/globe.svg", type: "prefetch", as: "image" },
+  { href: "/file.svg", type: "prefetch", as: "image" },
 ];
 
 /**
@@ -48,7 +57,7 @@ const PREFETCH_RESOURCES: ResourceHint[] = [
  */
 const DNS_PREFETCH_DOMAINS: ResourceHint[] = [
   // Add domains that might be used later
-  // { href: 'https://api.example.com', type: 'dns-prefetch' },
+  { href: "https://api.example.com", type: "dns-prefetch" },
 ];
 
 /**

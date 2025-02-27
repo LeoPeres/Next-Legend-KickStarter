@@ -3,10 +3,11 @@ import { Inter, Roboto_Mono } from "next/font/google";
 /**
  * Inter font configuration
  * Used as the primary font for the application
+ * Using 'optional' display strategy to improve LCP by not blocking text rendering
  */
 export const inter = Inter({
   subsets: ["latin"],
-  display: "swap",
+  display: "optional",
   variable: "--font-sans",
   preload: true,
   fallback: ["system-ui", "sans-serif"],

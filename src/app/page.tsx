@@ -21,6 +21,7 @@ export default function Home() {
             alt="Next-Legend KickStarter Logo"
             fill
             priority
+            fetchPriority="high"
             sizes="(max-width: 768px) 100vw, 128px"
             className="object-contain"
           />
